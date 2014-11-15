@@ -18,7 +18,6 @@ function savePost() {
         schema: {
             model: {
                 id: "ID",
-
                 fields: {
                     Title:{
                         type:"string"

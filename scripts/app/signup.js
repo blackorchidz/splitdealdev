@@ -1,99 +1,69 @@
-/**
- * Signup view model
- */
-var app = app || {};
+function signup() {
+    console.log("Sign up called successfully");
 
-app.Signup = (function () {
-    'use strict';
+    var savePostDS = new kendo.data.DataSource({
+                type: 'everlive',
+                transport: {
+                    // Required by Backend Services
+                    create: {
+                        url: "http://api.everlive.com/v1/IMregDJC77R1b1yM/Users",
+                        type: "POST",
+                        dataType: "json"
+                    }
+                },
 
-    var singupViewModel = (function () {
+                schema: {
+                    model: {
+                        id: "ID",
+                        fields: {
+                            DisplayName: {
+                                type: "string"
+                            },
+                            Email: {
+                                type: "string"
+                            },
+                            Username: {
+                                type: "string"
+                            },
+                            Password: {
+                                type: "string"
+                            },
+                            BirthDate:{
+                                type: "date"
+                            },
+                            Gender:{
+                                type:"number"
+                            }
 
-        var dataSource;
-        var $signUpForm;
-        var $formFields;
-        var $signupBtnWrp;
-        var validator;
-
-        // Register user after required fields (username and password) are validated in Backend Services
-        var signup = function () {
-
-            dataSource.Gender = parseInt(dataSource.Gender);
-            var birthDate = new Date(dataSource.BirthDate);
-
-            if (birthDate.toJSON() === null) {
-                birthDate = new Date();
+                        }
+                    }//end of model
+                }//end of schema
             }
+        )
+        ;//end of data source
 
-            dataSource.BirthDate = birthDate;
+    var itemsToInsert = {
+        DisplayName: $('#signupName').val(),
+        Email: $('#signupEmail').val(),
+        Username: $('#signupUsername').val(),
+        Password: $('#signupPassword').val(),
+        BirthDate: $('#signupBirthDatePicker').val(),
+        Gender: $('#signupGenderPicker').val(),
 
-            Everlive.$.Users.register(
-                dataSource.Username,
-                dataSource.Password,
-                dataSource)
-            .then(function () {
-                app.showAlert("Registration successful");
-                app.mobileApp.navigate('#welcome');
-            },
-            function (err) {
-                app.showError(err.message);
-            });
-        };
 
-        // Executed after Signup view initialization
-        // init form validator
-        var init = function () {
+    };
 
-            $signUpForm = $('#signUp');
-            $formFields = $signUpForm.find('input, textarea, select');
-            $signupBtnWrp = $('#signupBtnWrp');
-            validator = $signUpForm.kendoValidator({ validateOnBlur: false }).data('kendoValidator');
+    savePostDS.add(itemsToInsert);
+    savePostDS.sync();
 
-            $formFields.on('keyup keypress blur change input', function () {
-                if (validator.validate()) {
-                    $signupBtnWrp.removeClass('disabled');
-                } else {
-                    $signupBtnWrp.addClass('disabled');
-                }
-            });
-        }
+    $('#signupName').val('');
+    $('#signupEmail').val('');
+    $('#signupUsername').val('');
+    $('#signupPassword').val('');
+    $('#signupBirthDatePicker').val('');
+    $('#signupGenderPicker').val('');
 
-        // Executed after show of the Signup view
-        var show = function () {
 
-            dataSource = kendo.observable({
-                Username: '',
-                Password: '',
-                DisplayName: '',
-                Email: '',
-                Gender: '0',
-                About: '',
-                Friends: [],
-                BirthDate: new Date()
-            });
-            kendo.bind($('#signup-form'), dataSource, kendo.mobile.ui);
-        };
+    console.log("Datasourse sync successfully");
 
-        // Executed after hide of the Signup view
-        // disable signup button
-        var hide = function () {
-            $signupBtnWrp.addClass('disabled');
-        };
-
-        var onSelectChange = function (sel) {
-            var selected = sel.options[sel.selectedIndex].value;
-            sel.style.color = (selected == 0) ? '#b6c5c6' : '#34495e';
-        }
-
-        return {
-            init: init,
-            show: show,
-            hide: hide,
-            onSelectChange: onSelectChange,
-            signup: signup
-        };
-
-    }());
-
-    return singupViewModel;
-
-}());
+}//end of function

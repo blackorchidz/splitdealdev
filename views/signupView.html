@@ -1,12 +1,12 @@
-<div data-role="view" id="signup" data-title="Register" data-layout="default" class="signup-view">
+<div data-role="view" id="signup1" data-layout="default" class="signup-view">
     <div data-role="header">
-        <div style="color:black;" data-role="navbar">
+        <div data-role="navbar">
             Sign up
-            <a style="color:black;" class="nav-button nav-button-back hide-text" data-align="left" data-role="backbutton">Back</a>
+            <a class="nav-button nav-button-back hide-text" data-align="left" data-role="backbutton" href="#welcome">Back</a>
         </div>
     </div>
-    <form id="signUpForm">
-        <ul  data-role="listview" data-style="inset">
+    <form id="signUp">
+        <ul id="signup-form" data-role="listview" data-style="inset">
             <li style="background-color:#5490CC;color:white;">
                 Create an account
             </li>
@@ -16,50 +16,47 @@
             <li style="color:black;">
                 <p><a href="www.facebook.com"></a>Sign up with facebook</p>
             </li>
-            <li style="color:black;"><p>
-                <h3 data-align="center">Don't Worry,We will not do anything without asking you</h3>
-                </p></li>
+            <li style="color:black;">
+                <p>
+                <h4 data-align="center">Don't Worry,We will not do anything without asking you</h4>
+                </p>
+            </li>
 
             <li style="background-color:#4EB848;color:white;">Sign Up</li>
             <li style="background-color:#5490CC;color:white;">Or you can remember another password.:)</li>
-            <li><label style="color:black;">FirstName:
-                <input type="text" id="signupFName" data-bind="value: DisplayName" placeholder="FirstName" required/></label>
-            </li>
-            <li><label style="color:black;">LastName:
-                <input type="text" id="signupLName" data-bind="value: DisplayLName" placeholder="LastName" required/></label>
-            </li>
-            <li><label style="color:black;">Email_Id:
-                <input type="email" id="signupEmail" data-bind="value: Email" placeholder="Email"/></label>
-            </li>
-            <li><label style="color:black;">UserName:
-                <input type="text" id="signupUsername" data-bind="value: Username" placeholder="Username" required/></label>
-            </li>
-            <li><label style="color:black;">Password:
-                <input type="password" id="signupPassword" data-bind="value: Password" placeholder="Password" required/></label>
-            </li>
-            <li><label style="color:black;">Confirm:
-                <input type="password" id="signupCPassword" data-bind="value: CPassword" placeholder="Confirm Password" required/></label>
-            </li>
 
-            <li style="text-align:center;display:block;"><label>Terms and Condition</label>
-                <input checked type="checkbox" id="terms">
+            <li>
+                <label>Name:</label>
+                <input type="text" id="signupName" data-bind="value: DisplayName" placeholder="Name" required/>
+            </li>
+            <li>
+                <label>Email:</label>
+                <input type="email" id="signupEmail" data-bind="value: Email" placeholder="Email"/>
+            </li>
+            <li>
+                <label>Username:</label>
+                <input type="text" id="signupUsername" data-bind="value: Username" placeholder="Username" required/>
+            </li>
+            <li>
+                <label>Password:</label>
+                <input type="password" id="signupPassword" data-bind="value: Password" placeholder="Password" required/>
+            </li>
+            <li>
+                <label>Date Of Birth:</label>
+                <input type="date" id="signupBirthDatePicker" data-bind="value: BirthDate"/>
+            </li>
+            <li class="select-wrp">
+                <label>Gender:</label>
+                <select id="signupGenderPicker" data-bind="value: Gender">
+                    <option value="0" selected>Gender</option>
+                    <option value="1">Male</option>
+                    <option value="2">Female</option>
+                </select>
             </li>
 
         </ul>
     </form>
-    <div style="background-color:#4EB848;color:white;text-align:center;" id="signupBtnWrp" class="signup-btn-wrp disabled">
-        <a class="btn btn-signup" data-role="button" href="views/Search-Screen.html">SignUp</a>
-    </div>
-    <!-- footer -->
-    <div data-role="footer">
-        <!-- tabstrip -->
-        <div data-role="tabstrip">
-            <a style="color:black;" href="index.html" data-icon="search">Home</a>
-
-            <a style="color:black;" href="views/postOptionScreen.html"><i style="color:black;" class="fa fa-map-marker fa-3x"></i><br/>Post</a>
-            <a style="color:black;" href="views/map.html"><i style="color:black;" class="fa fa-location-arrow fa-3x"></i><br/>Near Me</a>
-            <a style="color:black;" href="views/Favorite-Screen.html"><i style="color:black;" class="fa fa-star-o fa-3x"></i><br/>favorite</a>
-            <a style="color:black;" href="views/Refine-Search.html" data-icon="settings">Setting</a>
-        </div>
+    <div id="signupBtnWrp" class="signup-btn-wrp" style="background-color:#4EB848;color:white;text-align:center;">
+        <a class="btn btn-signup" data-role="button" data-click="signup">Register</a>
     </div>
 </div>
