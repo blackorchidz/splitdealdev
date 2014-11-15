@@ -1,0 +1,46 @@
+<!--Post-Option-screen-->
+<div id="Post-screen" data-role="view" data-title="Post?" data-layout="default" class="post-types-view"
+     data-model="app.PostTypes">
+
+    <header data-role="header">
+        <div data-role="navbar">
+            Post?
+            <a data-role="backbutton" data-align="left" class="bck-btn-search">back</a>
+        </div>
+    </header>
+
+    <ul id="post-types-listview" data-style="inset" data-role="listview" data-template="postTypesTemplate"
+        data-bind="source: activities">
+
+    </ul>
+
+
+    <!-- footer -->
+    <div data-role="footer">
+        <!-- tabstrip -->
+        <div data-role="tabstrip">
+            <a style="color:black;" href="index.html" data-icon="search">Home</a>
+
+            <a style="color:black;" href="views/postOptionScreen.html">
+                <i style="color:black;" class="fa fa-map-marker fa-3x"></i><br/>
+                Post
+            </a>
+            <a style="color:black;" href="views/map.html"><i style="color:black;"
+                                                             class="fa fa-location-arrow fa-3x"></i><br/>Near Me</a>
+            <a style="color:black;" href="views/Favorite-Screen.html"><i style="color:black;"
+                                                                         class="fa fa-star-o fa-3x"></i><br/>favorite</a>
+            <a style="color:black;" href="views/Refine-Search.html" data-icon="settings">Setting</a>
+        </div>
+    </div>
+
+</div>
+
+<!-- Category ListView Template -->
+<script type="text/x-kendo-template" id="postTypesTemplate">
+    <div data-role="touch" data-bind="events: { tap: typeSelected }" class="cf">
+        <div class="postType-content">
+            <b class="post-type" data-bind="value: post-type-name">${TypeName}</b> <br/>
+        </div>
+    </div>
+
+</script>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SplitDeal</title>
+    <meta charset="utf-8"/>
+    <!-- Awesomefont CSS -->
+    <link href="kendo/font-awesome-4.2.0/css/font-awesome.min.css" rel="stylesheet"/>
+    <link href="kendo/styles/kendo.mobile.all.min.css" rel="stylesheet"/>
+    <link href="styles/main.css" rel="stylesheet"/>
+</head>
+<body id="splitDealApp">
+<div data-role="layout" data-id="default">
+    <!--View content will render here-->
+</div>
+<!--WELCOME VIEW -->
+<div data-role="view" id="welcome" data-layout="default" class="welcome-scrn form-view" data-model="app.Login"
+     data-init="app.Login.init" data-show="app.Login.show">
+
+    <!--########### header ##########-->
+    <div data-role="header">
+        <div data-role="navbar">
+            <!-- search Text Box with OnClick functionality -->
+            <input id="countries" style="height:30px;width:90%;border:1px solidblack;flex-wrap:wrap;" type="search"
+                   placeholder="Search" data-icon="search"/>
+            <!-- barcode image with scanninf functionality -->
+            <a class="text-color" href="barcode.html" data-align="right">
+                <i class="fa fa-barcode fa-3x"></i><br/>
+            </a>
+        </div>
+    </div>
+    <!--###########./ header ##########-->
+
+    <form id="login-form">
+        <ul data-role="listview" data-style="inset">
+            <li style="background-color:#5490CC;color:white;">Log IN</li>
+
+            <li class="username">
+                <label style="color:black;">UserName</label>
+                <input type="text" id="loginUsername" placeholder="Username" required
+                       validationMessage="Username is required!"/>
+            </li>
+            <li class="password">
+                <label style="color:black;">Password:</label>
+                <input type="password" id="loginPassword"
+                       placeholder="Password" required validationMessage="Password is required!"/>
+            </li>
+        </ul>
+    </form>
+    <ol class="group-wrp">
+        <li style="background-color:#4EB848;color:white;text-align:center;display: block;">
+                    <span id="login" data-role="touch" data-bind="events: { tap: login }">
+                        <a data-role="button" class="btn btn-login">Login</a>
+                    </span>
+        </li>
+        <li style="color:black;display:block;">Don't have an account?</li>
+
+        <li style="background-color:#4EB848;color:white;text-align:center;display: block;" class="signup">
+            <a data-role="button" href="views/signupView.html" class="btn-signup">Sign UP</a>
+        </li>
+    </ol>
+
+    <!--########### footer ##########-->
+    <div data-role="footer">
+        <!-- tabstrip -->
+        <div data-role="tabstrip">
+            <a class="text-color" href="index.html" data-icon="search">Home</a>
+            <a class="text-color" href="views/postOptionScreen.html">
+                <i class="text-color fa fa-map-marker fa-3x"></i><br/>Post</a>
+            <a class="text-color" href="views/map.html">
+                <i class="text-color fa fa-location-arrow fa-3x"></i><br/>Near Me</a>
+            <a class="text-color" href="views/Favorite-Screen.html">
+                <i class="text-color fa fa-star-o fa-3x"></i><br/>favorite</a>
+            <a class="text-color" href="views/Refine-Search.html" data-icon="settings">Setting</a>
+        </div>
+    </div>
+    <!--###########./ footer ##########-->
+</div>
+
+<script src="cordova.js"></script>
+<script src="kendo/js/jquery.min.js"></script>
+<script src="kendo/js/kendo.mobile.min.js"></script>
+<script src="scripts/lib/everlive.all.min.js"></script>
+<script src="kendo/js/console.js"></script>
+
+<script src="scripts/app/identity-provider.js"></script>
+<script src="scripts/app/settings.js"></script>
+<script src="scripts/app/app.js"></script>
+<script src="scripts/app/analytics-monitor.js"></script>
+<script src="scripts/app/users.js"></script>
+<script src="scripts/app/login.js"></script>
+<script src="scripts/app/signup.js"></script>
+
+<script src="scripts/app/watch-list.js"></script>
+<script src="scripts/app/post-option-screen.js"></script>
+<script src="scripts/app/best-buy.js"></script>
+
+</body>
+</html>
