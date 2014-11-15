@@ -33,6 +33,9 @@ function savePost() {
                     },
                     Picture:{
                         type:"file"
+                    },
+                    Location:{
+                        type:"string"
                     }
 
                 }
@@ -45,7 +48,8 @@ function savePost() {
         PostCategory:$('#postCategory').val(),
         Description:$('#postDescription').val(),
         SaleEndDate:$('#saleEndDate').val(),
-        Picture:$('postPicture').val()
+        Picture:$('#postPicture').val(),
+        Location:$('#postLocation').val()
         //User_id: Users().currentUser.id
 
     };
@@ -57,7 +61,8 @@ function savePost() {
     $('#postCategory').val('');
     $('#postDescription').val('');
     $('#saleEndDate').val('');
-    $('postPicture').val('');
+    $('#postPicture').val('');
+    $('#postLocation').val('');
 
     console.log("Datasourse sync successfully");
 
