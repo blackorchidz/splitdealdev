@@ -16,16 +16,17 @@ app.Maps = (function () {
                 StoreName: {
                     field: 'StoreName',
                     defaultValue: null
-<<<<<<< HEAD
+                },
+                StoreAddress: {
+                    field: 'StoreAddress',
+                    defaultValue: null
                 },
                 UserId: {
                     field: 'User_id',
                     defaultValue: null
                 }
+                
 
-=======
-                }
->>>>>>> origin/master
             },
             CreatedAtFormatted: function () {
 
