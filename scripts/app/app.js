@@ -119,6 +119,7 @@ var app = (function (win) {
             return el.Users.logout();
         }
     };
+    
 //capture image
     document.addEventListener('deviceready', onDeviceReady, false);
 function id(element) {
