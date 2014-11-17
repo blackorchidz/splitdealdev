@@ -33,7 +33,7 @@ app.Maps = (function () {
                 UserId: {
                     field: 'User_id',
                     defaultValue: null
-                },
+                }
 
             },
             CreatedAtFormatted: function () {
