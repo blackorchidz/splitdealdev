@@ -21,6 +21,11 @@ app.Maps = (function () {
                     field: 'StoreAddress',
                     defaultValue: null
                 },
+                StoreLocation:{
+                    field: 'StoreLocation',
+                    defaultValue: null,
+                   
+                },
                 UserId: {
                     field: 'User_id',
                     defaultValue: null
