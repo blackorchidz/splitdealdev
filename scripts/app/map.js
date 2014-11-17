@@ -7,64 +7,29 @@ var app = app || {};
 app.Maps = (function () {
     'use strict'
 
+
     // Activities model
     var activitiesModel = (function () {
-
         var activityModel = {
-
             id: 'Id',
             fields: {
                 StoreName: {
                     field: 'StoreName',
-                    defaultValue: ''
-                },
-                StoreLocation: {
-                    field: 'StoreLocation',
-                    defaultValue: ''
-                },
-                CreatedAt: {
-                    field: 'CreatedAt',
-                    defaultValue: new Date()
-                },
-                StoreAddress: {
-                    fields: 'StoreAddress',
                     defaultValue: null
+<<<<<<< HEAD
                 },
                 UserId: {
                     field: 'User_id',
                     defaultValue: null
                 }
 
+=======
+                }
+>>>>>>> origin/master
             },
             CreatedAtFormatted: function () {
 
                 return app.helper.formatDate(this.get('CreatedAt'));
-            },
-            PictureUrl: function () {
-
-                return app.helper.resolvePictureUrl(this.get('Picture'));
-            },
-            User: function () {
-
-                var userId = this.get('UserId');
-
-                var user = $.grep(app.Users.users(), function (e) {
-                    return e.Id === userId;
-                })[0];
-
-                return user ? {
-                    DisplayName: user.DisplayName,
-                    PictureUrl: app.helper.resolveProfilePictureUrl(user.Picture)
-                } : {
-                    DisplayName: 'Anonymous',
-                    PictureUrl: app.helper.resolveProfilePictureUrl()
-                };
-            },
-            isVisible: function () {
-                var currentUserId = app.Users.currentUser.data.Id;
-                var userId = this.get('UserId');
-
-                return currentUserId === userId;
             }
         };
 
@@ -78,14 +43,6 @@ app.Maps = (function () {
             transport: {
                 // Required by Backend Services
                 typeName: 'Stores'
-            },
-            change: function (e) {
-
-                if (e.items && e.items.length > 0) {
-                    $('#no-activities-span').hide();
-                } else {
-                    $('#no-activities-span').show();
-                }
             },
             sort: { field: 'CreatedAt', dir: 'desc' }
         });
@@ -111,25 +68,15 @@ app.Maps = (function () {
             app.mobileApp.navigate('#welcome');
         };
 
-        // Logout user
-        var logout = function () {
-
-            app.helper.logout()
-                .then(navigateHome, function (err) {
-                    app.showError(err.message);
-                    navigateHome();
-                });
-        };
 
         return {
-            activities: activitiesModel.activities,
-            activitySelected: activitySelected,
-            logout: logout
+            activities: activitiesModel.activities
         };
 
     }());
 
     return activitiesViewModel;
+    console.log("Data read Successfully Successfully");
 
 }());
 
