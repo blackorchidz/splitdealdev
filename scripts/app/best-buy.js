@@ -35,6 +35,11 @@ function savePost() {
                         type:"file"
                     },
                     Location:{
+                        type:"geopoint"
+
+
+                    },
+                    Price:{
                         type:"string"
                     }
 
@@ -49,7 +54,8 @@ function savePost() {
         Description:$('#postDescription').val(),
         SaleEndDate:$('#saleEndDate').val(),
         Picture:$('#postPicture').val(),
-        Location:$('#postLocation').val()
+        Location:$('#postLocation').val(),
+        Price:$('#postPrice').val()
         //User_id: Users().currentUser.id
 
     };
@@ -63,6 +69,7 @@ function savePost() {
     $('#saleEndDate').val('');
     $('#postPicture').val('');
     $('#postLocation').val('');
+    $('#postPrice').val('');
 
     console.log("Datasourse sync successfully");
 
