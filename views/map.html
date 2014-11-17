@@ -1,15 +1,17 @@
-<div data-role="view" id="mapview" data-title="MAP" data-layout="default">
+<div data-role="view" id="mapview" data-title="MAP" data-layout="default" data-model="app.Maps">
     <div data-role="header">
         <div style="color:black;" data-role="navbar">
             MAP
-            <a style="color:black;" class="nav-button nav-button-back hide-text" data-align="left"
-               data-role="backbutton" href="#welcome">Back</a>
+            <a style="color:black;" class="nav-button nav-button-back hide-text" data-align="left" data-role="backbutton">Back</a>
         </div>
     </div>
-    <div id="map1">
+    <!--<div id="map1">
         <div class="demo-section k-header" style="padding: 1em;">
             <div id="map"></div>
-        </div>
+        </div>-->
+        <ul id="map-listview" data-style="inset" data-role="listview" data-template="mapActivityTemplate" data-bind="source: activities"></ul>
+
+    </ul>
         <!-- footer -->
         <div data-role="footer">
             <!-- tabstrip -->
@@ -26,7 +28,7 @@
             </div>
         </div>
 
-        <script>
+       <!-- <script>
             function createMap() {
                 $("#map").kendoMap({
                     center: [30.268107, -97.744821],
@@ -57,6 +59,20 @@
             }
 
             $(document).ready(createMap);
-        </script>
+        </script>-->
+        <!-- Post ListView Template -->
+<script type="text/x-kendo-template" id="mapActivityTemplate">
+    <div data-role="touch" data-bind="events: { tap: mapActivitySelected }" class="cf">
+        
+        <div class="maps-content">
+            <b class="storeName">${StoreName}</b> <br/>
+            <span class="StoreLocation">${StoreLocation}</span><br/>
+            <span class="CreatedAt" style="float:right;">${CreatedAtFormatted()}</span><br/>
+            <span class="StoreAddress">Address: ${StoreAddress}</span><br/>
+            <br/>
+        </div>
+    </div>
+
+</script>
     </div>
 </div>
