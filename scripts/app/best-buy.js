@@ -1,12 +1,7 @@
 /**
  * Created by mkale on 14/11/2014.
  */
- <script>
-    var el = new Everlive('IMregDJC77R1b1yM');
-    window.onload = function () {
-        document.getElementById('postPicture').action = el.Files.getUploadUrl();            
-    };
-</script>
+ 
 
 function savePost() {
 
@@ -38,12 +33,10 @@ function savePost() {
                         type:"date"
                     },
                     Picture:{
-                        type:"file"
+                        type:"string"
                     },
                     Location:{
-                        type:"geopoint"
-
-
+                        type:"Location"
                     },
                     Price:{
                         type:"string"
