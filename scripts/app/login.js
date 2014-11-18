@@ -74,6 +74,7 @@ app.Login = (function () {
             .then(function () {
 
 <<<<<<< HEAD
+<<<<<<< HEAD
                 app.mobileApp.navigate('views/Watch-List.html');
             })
             .then(null,
@@ -82,11 +83,16 @@ app.Login = (function () {
                       //app.showError(err.message);
 
 =======
+=======
+>>>>>>> 26ba4f9e354305026d723aae2e513166a240ecfe
                 app.mobileApp.navigate('views/postsView.html');
             })
             .then(null,
                   function (err) {
                       app.showError(err.message);
+<<<<<<< HEAD
+>>>>>>> 26ba4f9e354305026d723aae2e513166a240ecfe
+=======
 >>>>>>> 26ba4f9e354305026d723aae2e513166a240ecfe
                   }
             );
@@ -128,7 +134,11 @@ app.Login = (function () {
                 .then(function () {
                     app.mobileApp.hideLoading();
 <<<<<<< HEAD
+<<<<<<< HEAD
                     app.mobileApp.navigate('views/Watch-List.html');
+=======
+                    app.mobileApp.navigate('views/postsView.html');
+>>>>>>> 26ba4f9e354305026d723aae2e513166a240ecfe
 =======
                     app.mobileApp.navigate('views/postsView.html');
 >>>>>>> 26ba4f9e354305026d723aae2e513166a240ecfe
@@ -179,7 +189,11 @@ app.Login = (function () {
                 .then(function () {
                     app.mobileApp.hideLoading();
 <<<<<<< HEAD
+<<<<<<< HEAD
                     app.mobileApp.navigate('views/Watch-List.html');
+=======
+                    app.mobileApp.navigate('views/postsView.html');
+>>>>>>> 26ba4f9e354305026d723aae2e513166a240ecfe
 =======
                     app.mobileApp.navigate('views/postsView.html');
 >>>>>>> 26ba4f9e354305026d723aae2e513166a240ecfe
@@ -230,7 +244,11 @@ app.Login = (function () {
                 .then(function () {
                     app.mobileApp.hideLoading();
 <<<<<<< HEAD
+<<<<<<< HEAD
                     app.mobileApp.navigate('views/Watch-List.html');
+=======
+                    app.mobileApp.navigate('views/postsView.html');
+>>>>>>> 26ba4f9e354305026d723aae2e513166a240ecfe
 =======
                     app.mobileApp.navigate('views/postsView.html');
 >>>>>>> 26ba4f9e354305026d723aae2e513166a240ecfe
@@ -277,7 +295,11 @@ app.Login = (function () {
                 .then(function () {
                     app.mobileApp.hideLoading();
 <<<<<<< HEAD
+<<<<<<< HEAD
                     app.mobileApp.navigate('views/Watch-List.html');
+=======
+                    app.mobileApp.navigate('views/postsView.html');
+>>>>>>> 26ba4f9e354305026d723aae2e513166a240ecfe
 =======
                     app.mobileApp.navigate('views/postsView.html');
 >>>>>>> 26ba4f9e354305026d723aae2e513166a240ecfe

@@ -121,7 +121,10 @@ var app = (function (win) {
     };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+>>>>>>> 26ba4f9e354305026d723aae2e513166a240ecfe
 =======
 >>>>>>> 26ba4f9e354305026d723aae2e513166a240ecfe
     var os = kendo.support.mobileOS,

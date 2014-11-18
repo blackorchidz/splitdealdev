@@ -6,7 +6,13 @@ var appSettings = {
 
     everlive: {
 <<<<<<< HEAD
+<<<<<<< HEAD
         apiKey: 'IMregDJC77R1b1yM', // Put your Backend Services API key here
+=======
+
+       //apiKey: 'AqvuOv8S2i4sjoyk',  Put your Backend Services API key here
+        apiKey: 'IMregDJC77R1b1yM',
+>>>>>>> 26ba4f9e354305026d723aae2e513166a240ecfe
 =======
 
        //apiKey: 'AqvuOv8S2i4sjoyk',  Put your Backend Services API key here
@@ -26,7 +32,11 @@ var appSettings = {
 
     facebook: {
 <<<<<<< HEAD
+<<<<<<< HEAD
         appId: 'AIzaSyBB0w8xqqbg1CdFkP2QUTF54iUEBK860fk', // Put your Facebook App ID here
+=======
+        appId: '1408629486049918', // Put your Facebook App ID here
+>>>>>>> 26ba4f9e354305026d723aae2e513166a240ecfe
 =======
         appId: '1408629486049918', // Put your Facebook App ID here
 >>>>>>> 26ba4f9e354305026d723aae2e513166a240ecfe
