@@ -73,6 +73,7 @@ app.Login = (function () {
             })
             .then(function () {
 
+<<<<<<< HEAD
                 app.mobileApp.navigate('views/Watch-List.html');
             })
             .then(null,
@@ -80,6 +81,13 @@ app.Login = (function () {
                       alert("Fields Cannot Be Blank");
                       //app.showError(err.message);
 
+=======
+                app.mobileApp.navigate('views/postsView.html');
+            })
+            .then(null,
+                  function (err) {
+                      app.showError(err.message);
+>>>>>>> 26ba4f9e354305026d723aae2e513166a240ecfe
                   }
             );
         };
@@ -119,7 +127,11 @@ app.Login = (function () {
                 })
                 .then(function () {
                     app.mobileApp.hideLoading();
+<<<<<<< HEAD
                     app.mobileApp.navigate('views/Watch-List.html');
+=======
+                    app.mobileApp.navigate('views/postsView.html');
+>>>>>>> 26ba4f9e354305026d723aae2e513166a240ecfe
                 })
                 .then(null, function (err) {
                     app.mobileApp.hideLoading();
@@ -166,7 +178,11 @@ app.Login = (function () {
                 })
                 .then(function () {
                     app.mobileApp.hideLoading();
+<<<<<<< HEAD
                     app.mobileApp.navigate('views/Watch-List.html');
+=======
+                    app.mobileApp.navigate('views/postsView.html');
+>>>>>>> 26ba4f9e354305026d723aae2e513166a240ecfe
                 })
                 .then(null, function (err) {
                     app.mobileApp.hideLoading();
@@ -213,7 +229,11 @@ app.Login = (function () {
                 })
                 .then(function () {
                     app.mobileApp.hideLoading();
+<<<<<<< HEAD
                     app.mobileApp.navigate('views/Watch-List.html');
+=======
+                    app.mobileApp.navigate('views/postsView.html');
+>>>>>>> 26ba4f9e354305026d723aae2e513166a240ecfe
                 })
                 .then(null, function (err) {
                     app.mobileApp.hideLoading();
@@ -256,7 +276,11 @@ app.Login = (function () {
                 })
                 .then(function () {
                     app.mobileApp.hideLoading();
+<<<<<<< HEAD
                     app.mobileApp.navigate('views/Watch-List.html');
+=======
+                    app.mobileApp.navigate('views/postsView.html');
+>>>>>>> 26ba4f9e354305026d723aae2e513166a240ecfe
                 })
                 .then(null, function (err) {
                     app.mobileApp.hideLoading();
