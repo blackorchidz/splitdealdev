@@ -21,15 +21,10 @@
 		that._pictureSource = navigator.camera.PictureSourceType;
 		that._destinationType = navigator.camera.DestinationType;
 		
-	id("capturePhotoButton").addEventListener("click", function(){
+	id("postPicture").addEventListener("click", function(){
 		that._capturePhoto.apply(that,arguments);
 	});
-	/*id("getPhotoFromLibraryButton").addEventListener("click", function(){
-	that._getPhotoFromLibrary.apply(that,arguments)
-	});
-	id("getPhotoFromAlbumButton").addEventListener("click", function(){
-	that._getPhotoFromAlbum.apply(that,arguments);
-	});*/
+	
 	},
 	
 	_capturePhoto: function() {
@@ -45,19 +40,6 @@
 		});
 		},
 	
-	/*
-	_getPhotoFromLibrary: function() {
-	var that= this;
-	// On Android devices, pictureSource.PHOTOLIBRARY and
-	// pictureSource.SAVEDPHOTOALBUM display the same photo album.
-	that._getPhoto(that._pictureSource.PHOTOLIBRARY);
-	},
-	_getPhotoFromAlbum: function() {
-	var that= this;
-	// On Android devices, pictureSource.PHOTOLIBRARY and
-	// pictureSource.SAVEDPHOTOALBUM display the same photo album.
-	that._getPhoto(that._pictureSource.SAVEDPHOTOALBUM)
-	},*/
 		_getPhoto: function(source) {
 		var that = this;
 		// Retrieve image file location from specified source.
