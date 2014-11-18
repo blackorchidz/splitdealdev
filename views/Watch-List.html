@@ -1,0 +1,64 @@
+<div data-role="view" id="view-all-posts" data-layout="default" class="watchLists-view"
+     data-model="app.Posts">
+
+    <div data-role="header">
+        <div style="color:black;" data-role="navbar">
+            My Listing
+            <a style="color:black;" class="nav-button nav-button-back hide-text" data-align="left"
+               data-role="backbutton">Back</a>
+        </div>
+    </div>
+
+
+    <ul id="watchLists-listview" data-style="inset" data-role="listview" data-template="watchListTemplate"
+        data-bind="source: watchLists">
+
+    </ul>
+
+    <p id="no-activities-span" hidden="hidden" class="no-items-msg">
+        <b>You have no posts yet.</b><br/><br/>Tap on the plus sign and share what's on your mind.
+    </p>
+
+    <!-- footer -->
+    <div data-role="footer">
+        <!-- tabstrip -->
+        <div data-role="tabstrip">
+            <a style="color:black;" href="index.html" data-icon="search">Home</a>
+
+            <a style="color:black;" href="views/postOptionScreen.html"><i style="color:black;"
+                                                                           class="fa fa-map-marker fa-3x"></i><br/>Post</a>
+            <a style="color:black;" href="views/map.html"><i style="color:black;"
+                                                             class="fa fa-location-arrow fa-3x"></i><br/>Near Me</a>
+            <a style="color:black;" href="views/Favorite-Screen.html"><i style="color:black;"
+                                                                         class="fa fa-star-o fa-3x"></i><br/>favorite</a>
+            <a style="color:black;" href="views/Refine-Search.html" data-icon="settings">Setting</a>
+        </div>
+    </div>
+
+
+</div>
+
+<!-- Post ListView Template -->
+<script type="text/x-kendo-template" id="watchListTemplate">
+    <div data-role="touch" data-bind="events: { tap: activitySelected }" class="cf">
+        <div class="user-avatar">
+            <img data-bind="attr:{src: User().PictureUrl}" alt="styles/images/avatar.png" height="40px" width="40px"/>
+        </div>
+        <div class="posts-content">
+            <b class="post-title">${Title}</b> <br/>
+            <span class="post-description">${Description}</span><br/>
+            <span class="time-span" style="float:right;">${CreatedAtFormatted()}</span><br/>
+            <span class="price">Price: ${Price}</span><br/>
+            <span class="price">Location: ${Location}</span><br/>
+            <br/>
+        </div>
+    </div>
+
+</script>
+
+
+
+
+
+
+

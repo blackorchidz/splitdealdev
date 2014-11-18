@@ -1,0 +1,46 @@
+<div data-role="view" id="mapview" data-title="MAP" data-layout="default" data-model="app.Maps">
+
+    <div data-role="header">
+        <div style="color:black;" data-role="navbar">
+            MAP
+            <a style="color:black;" class="nav-button nav-button-back hide-text" data-align="left"
+               data-role="backbutton">Back</a>
+        </div>
+    </div>
+
+    <ul id="map-listview" data-style="inset" data-role="listview" data-template="mapActivityTemplate"
+        data-bind="source: activities">
+    </ul>
+
+
+
+    <!-- footer -->
+    <div data-role="footer">
+        <!-- tabstrip -->
+        <div data-role="tabstrip">
+            <a style="color:black;" href="index.html" data-icon="search">Home</a>
+
+            <a style="color:black;" href="views/postOptionScreen.html"><i style="color:black;"
+                                                                          class="fa fa-map-marker fa-3x"></i><br/>Post</a>
+            <a style="color:black;" href="views/map.html"><i style="color:black;"
+                                                             class="fa fa-location-arrow fa-3x"></i><br/>Near Me</a>
+            <a style="color:black;" href="views/Favorite-Screen.html"><i style="color:black;"
+                                                                         class="fa fa-star-o fa-3x"></i><br/>favorite</a>
+            <a style="color:black;" href="views/Refine-Search.html" data-icon="settings">Setting</a>
+        </div>
+    </div>
+    <!-- ./ end of footer -->
+
+</div>
+
+<script type="text/x-kendo-template" id="mapActivityTemplate">
+
+        <div class="maps-content">
+
+            <b class="">${StoreName}</b> <br/>
+            <span class="">${StoreAddress}</span><br/>
+            <div class="">${StoreLocation}</div><br/>
+            
+        </div>
+
+</script>
