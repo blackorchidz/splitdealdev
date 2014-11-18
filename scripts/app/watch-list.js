@@ -107,6 +107,22 @@ app.Posts = (function () {
     // Activities view model
     var watchListsViewModel = (function () {
 
+        var $activityPicture;
+        
+        var init = function () {
+            
+            $activityPicture = $('#Picture');
+        };
+        var show = function (e) {
+            
+            
+            $activityPicture[0].style.display = post.Picture ? 'block' : 'none';
+            
+            
+            
+            kendo.bind(e.view.element, post, kendo.mobile.ui);
+        };
+
         // Navigate to activityView When some activity is selected
         var activitySelected = function (e) {
 
@@ -131,6 +147,7 @@ app.Posts = (function () {
 
         return {
             watchLists: watchListsModel.watchLists,
+            init: init,
             activitySelected: activitySelected,
             logout: logout
         };
