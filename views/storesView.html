@@ -1,0 +1,46 @@
+<div id="stores" 
+     data-role="view" data-title="Stores" data-style="inset" data-model="app.Maps">
+    <header data-role="header">
+        <div data-role="navbar">
+            <ul id="btnStoreViewToggle" data-role="buttongroup" data-index="0" data-align="center">
+                <li>Map</li>
+                <li>List</li>
+            </ul>
+        </div>
+    </header>
+    <div id="storesContent">
+        <div id="map"></div>
+        <ul id="storeList" data-role="listview" data-style="inset" style="display:none"
+            data-template="tmplStoreListItem" data-bind="source: activities">
+        </ul>
+
+    </div>
+     <span id="offline">Please reconnect to Internet.</span>
+
+    <!--########### footer ##########-->
+    <div data-role="footer">
+        <!-- tabstrip -->
+        <div data-role="tabstrip">
+            <a class="text-color" href="index.html" data-icon="search">Home</a>
+            <a class="text-color" href="views/postOptionScreen.html">
+                <i class="text-color fa fa-map-marker fa-3x"></i><br/>Post</a>
+            <a class="text-color" href="views/storesView.html">
+                <i class="text-color fa fa-location-arrow fa-3x"></i><br/>Near Me</a>
+            <a class="text-color" href="views/Favorite-Screen.html">
+                <i class="text-color fa fa-star-o fa-3x"></i><br/>favorite</a>
+            <a class="text-color" href="views/Refine-Search.html" data-icon="settings">Setting</a>
+        </div>
+    </div>
+</div>
+
+<script id="tmplStoreListItem" type="text/x-kendo-template">
+    <div class="j-listview-item stores">
+        <div class="maps-content">
+
+            <b class="">${StoreName}</b> <br/>
+            <span class="">${StoreAddress}</span><br/>
+            <div class="">${StoreLocation}</div><br/>
+            
+        </div>
+    </div>
+</script>
