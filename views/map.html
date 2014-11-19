@@ -7,6 +7,18 @@
                data-role="backbutton">Back</a>
         </div>
     </div>
+    <div class="content">
+    <div class="action-area ch30">
+    <button class="button dh" id="watchButton">Start Geolocation Watch</button>
+    <button class="button dh" id="refreshButton">Refresh Geolocation</button>
+    </div>
+    <div class="result-area ch70">
+    <div class="results">
+    <div id="results" class="desc"></div>
+    </div>
+    <div class="separator"></div>
+    </div>
+    </div>
 
     <ul id="map-listview" data-style="inset" data-role="listview" data-template="mapActivityTemplate"
         data-bind="source: activities">

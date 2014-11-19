@@ -77,6 +77,7 @@ var app = (function (win) {
             console.log('Telerik AppFeedback API key is not set. You cannot use feedback service.');
         }
     };
+    
 
     // Handle "deviceready" event
     document.addEventListener('deviceready', onDeviceReady, false);
