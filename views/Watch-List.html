@@ -10,8 +10,7 @@
     </div>
 
 
-    <ul id="watchLists-listview" data-style="inset" data-role="listview" data-template="watchListTemplate"
-        data-bind="source: watchLists">
+<ul id="watchLists-listview" data-style="inset" data-role="listview" data-template="watchListTemplate"data-bind="source: watchLists">
 
     </ul>
 
@@ -50,7 +49,8 @@
             <span class="time-span" style="float:right;">${CreatedAtFormatted()}</span><br/>
             <span class="price">Price: ${Price}</span><br/>
             <span class="price">Location: ${Location}</span><br/>
-            //<img id="Picture" class="Picture" data-bind="attr:{src: PictureUrl()}" width="50%">${Picture}</img>
+            <img data-align="left" id="Picture" data-bind="attr:{src: PictureUrl}" width="75" />
+            
             <br/>
         </div>
     </div>
