@@ -74,6 +74,7 @@ app.Maps = (function () {
             app.mobileApp.navigate('#welcome');
         };
 
+        
 
         return {
             activities: activitiesModel.activities
