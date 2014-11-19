@@ -1,29 +1,25 @@
-<div data-role="view" id="mapview" data-title="MAP" data-model="app.Maps">
+<div data-role="view" id="mapview" data-title="MAP" data-init="storesInit" data-show="onStoresShow" data-model="app.Maps">
 
     <div data-role="header">
         <div style="color:black;" data-role="navbar">
-            MAP
+        
+            <ul id="btnStoreViewToggle" data-role="buttongroup" data-index="0" data-align="center">
+                <li>Map</li>
+                <li>List</li>
+            </ul>
             <a style="color:black;" class="nav-button nav-button-back hide-text" data-align="left"
                data-role="backbutton">Back</a>
+        </div>        
         </div>
-    </div>
-    <div class="content">
-    <div class="action-area ch30">
-    <button class="button dh" id="watchButton">Start Geolocation Watch</button>
-    <button class="button dh" id="refreshButton">Refresh Geolocation</button>
-    </div>
-    <div class="result-area ch70">
-    <div class="results">
-    <div id="results" class="desc"></div>
-    </div>
-    <div class="separator"></div>
-    </div>
-    </div>
+    
+    <div id="storesContent">
+        <div id="map"></div>
 
-   <ul id="map-listview" data-style="inset" data-role="listview" data-template="mapActivityTemplate"
+     <ul id="storeList" data-style="inset" data-role="listview" data-template="mapActivityTemplate"
         data-bind="source: activities">
     </ul>
-
+    </div>
+    <span id="offline">Please reconnect to Internet.</span>
 
 
     <!-- footer -->

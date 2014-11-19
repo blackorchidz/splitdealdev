@@ -40,6 +40,7 @@
                 <li style="color:black;">
                 <!-- browsing file -->
                     <input type="file" id="postPicture"/> Attach a photo
+
                    <!-- Capturing camera button -->
                     <!--<input type="file" id="capturePhotoButton"/>-->
                     <!--<button class="button dh" id="capturePhotoButton">Take Photo</button>-->
@@ -78,3 +79,9 @@
     </div>
 </div>
 </div>
+<script>
+    var el = new Everlive('IMregDJC77R1b1yM');
+    window.onload = function () {
+        document.getElementById('postPicture').action = el.Files.getUploadUrl();            
+    };
+</script>

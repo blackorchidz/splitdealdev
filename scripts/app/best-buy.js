@@ -1,6 +1,13 @@
 /**
- * Created by mkale on 14/11/2014.
- */
+ * Created by mkale on 14/11/2014.*/
+
+
+    var el = new Everlive('IMregDJC77R1b1yM');
+    window.onload = function () {
+        document.getElementById('postPicture').action = el.Files.getUploadUrl();            
+    };
+
+ 
  
 
 function savePost() {
@@ -33,7 +40,7 @@ function savePost() {
                         type:"date"
                     },
                     Picture:{
-                        type:"file"
+                        type:"image"
                     },
                     Location:{
                         type:"Location"
@@ -74,4 +81,3 @@ function savePost() {
 
 }//end of function
 
- 
