@@ -2,9 +2,9 @@ var app = (function (win) {
     'use strict';
 
     // Global error handling
-    var showAlert = function(message, title, callback) {
+   var showAlert = function(message, title, callback) {
         navigator.notification.alert(message, callback || function () {
-        }, title, 'OK');
+       }, title, 'OK');
     };
 
     var showError = function(message) {
