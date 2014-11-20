@@ -1,4 +1,65 @@
-<div data-role="view" id="mapview" data-title="MAP" data-init="storesInit" data-show="onStoresShow" data-model="app.Maps">
+ <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+ <script>
+// Note: This example requires that you consent to location sharing when
+// prompted by your browser. If you see a blank space instead of the map, this
+// is probably because you have denied permission for location sharing.
+
+var map;
+
+function initialize() {
+  var mapOptions = {
+    zoom: 6
+  };
+  map = new google.maps.Map(document.getElementById('mapview'),
+      mapOptions);
+
+  // Try HTML5 geolocation
+  if(navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      var pos = new google.maps.LatLng(position.coords.latitude,
+                                       position.coords.longitude);
+
+      var infowindow = new google.maps.Marker({
+        map: map,
+        position: pos,
+        title: 'Location found.'
+      });
+
+     
+
+
+      map.setCenter(pos);
+    }, function() {
+      handleNoGeolocation(true);
+    });
+  } else {
+    // Browser doesn't support Geolocation
+    handleNoGeolocation(false);
+  }
+}
+
+function handleNoGeolocation(errorFlag) {
+  if (errorFlag) {
+    var content = 'Error: The Geolocation service failed.';
+  } else {
+    var content = 'Error: Your browser doesn\'t support geolocation.';
+  }
+
+  var options = {
+    map: map,
+    position: new google.maps.LatLng(60, 105),
+    content: content
+  };
+
+  var infowindow = new google.maps.Marker(options);
+  map.setCenter(options.position);
+}
+
+google.maps.event.addDomListener(window, 'load', initialize);
+
+    </script>
+
+<div data-role="view" id="mapview" data-title="MAP">
 
     <div data-role="header">
         <div style="color:black;" data-role="navbar">
@@ -9,17 +70,20 @@
             </ul>
             <a style="color:black;" class="nav-button nav-button-back hide-text" data-align="left"
                data-role="backbutton">Back</a>
-        </div>        
+        </div>  
+
         </div>
-    
-    <div id="storesContent">
-        <div id="map"></div>
+    <p>hello world</p>
+    <br/>
+   <!--  <div id="storesContent">
+       
 
    <ul id="storeList" data-style="inset" data-role="listview" data-template="mapActivityTemplate"
         data-bind="source: activities">
     </ul>
-</div>
- <span id="offline">Please reconnect to Internet.</span>
+</div> -->
+ <div id="mapview" style="width:500px;height:300px;border:2px;border-style:solid;"></div>
+ <!-- <span id="offline">Please reconnect to Internet.</span> -->
 
 
     <!-- footer -->
@@ -41,7 +105,7 @@
 
 </div>
 
-<script type="text/x-kendo-template" id="mapActivityTemplate">
+<!--<script type="text/x-kendo-template" id="mapActivityTemplate">
 
         <div class="maps-content">
 
@@ -51,4 +115,6 @@
             
         </div>
 
-</script>
+</script>-->
+
+ 
