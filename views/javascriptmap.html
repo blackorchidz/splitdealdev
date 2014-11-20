@@ -1,0 +1,36 @@
+<div data-role="view" id="mapview" data-title="MAP">
+
+    <div data-role="header">
+   
+        <div style="color:black;" data-role="navbar">
+        
+            <ul id="btnStoreViewToggle" data-role="buttongroup" data-index="0" data-align="center">
+                <li>Map</li>
+                <li>List</li>
+            </ul>
+            <a style="color:black;" class="nav-button nav-button-back hide-text" data-align="left"
+               data-role="backbutton">Back</a>
+        </div>        
+        </div>
+    
+    
+ 
+<div id="map-canvas"></div>
+ </div>
+  <style type="text/css">
+      html, body, #map-canvas { height: 100%; margin: 0; padding: 0;}
+    </style>
+    <script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBB0w8xqqbg1CdFkP2QUTF54iUEBK860fk">
+    </script>
+    <script type="text/javascript">
+      function initialize() {
+        var mapOptions = {
+          center: { lat: -34.397, lng: 150.644},
+          zoom: 8
+        };
+        var map = new google.maps.Map(document.getElementById('map-canvas'),
+            mapOptions);
+      }
+      google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
