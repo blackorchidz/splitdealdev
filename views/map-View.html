@@ -10,123 +10,92 @@
             </ul>
             </div>
         </div>
-         <div id="example">
-    <div class="box" id="mapConfig">
-        <div class="box-col">
-            <h4>Center</h4>
-            <ul class="options">
-                <li style="display:block">
-                    <input id="centerLat" data-role="numerictextbox"
-                           data-format="N4" value="30.2681" data-decimals="4" />
-                    <input id="centerLng" data-role="numerictextbox"
-                           data-format="N4" value="-97.7448" data-decimals="4" />
-                    <button id="center" class="k-button">center()</button>
-             
-                   <select id="zoomLevel" data-role="dropdownlist">
-                        <option value="1">1 (min)</option>
-                        <option value="2">2</option>
-                        <option value="3" selected="selected">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
-                        <option value="10">10</option>
-                        <option value="11">11</option>
-                        <option value="12">12</option>
-                        <option value="13">13</option>
-                        <option value="14">14</option>
-                        <option value="15">15</option>
-                        <option value="16">16</option>
-                        <option value="17">17</option>
-                        <option value="18">18 (max)</option>
-                    </select>
-                    <button id="zoom" class="k-button">zoom()</button>
-                </li>
-            </ul>
+ 
+         <div class="wrapper">
+            <div id="map-canvas" style="width: 1300px; height: 600px"></div>
+            <input id="btn-show" type="button" value="Show" />
         </div>
-
-        
-    </div>
-        <div id="map1">
-        <div class="demo-section k-header" style="padding: 1em;">
-            <div id="map"></div>
-           
-        </ul>
-        </div>
-        </div>
-        </div>
-
+ 
+        </script>
           <!-- footer -->
                <div data-role="footer">
                             <!-- tabstrip -->
-                                <div data-role="tabstrip">
-                                    <a style="color:black;" href="index.html" data-icon="search">Home</a>
+                    <div data-role="tabstrip">
+                      <a style="color:black;" href="index.html" data-icon="search">Home</a>
+                      <a style="color:black;" href="views/Post-Option-Sreen.html"><i style="color:black;" class="fa fa-map-marker fa-3x"></i><br/>Post</a>
+                      <a style="color:black;" href="views/map.html"><i style="color:black;" class="fa fa-location-arrow fa-3x"></i><br/>Near Me</a>
+                      <a style="color:black;" href="views/Favorite-Screen.html"><i style="color:black;" class="fa fa-star-o fa-3x"></i><br/>favorite</a>
+                      <a style="color:black;" href="views/Refine-Search.html" data-icon="settings">Setting</a>
+                 </div>
+               </div>
+                 <script>
+            $(document).ready(function () {
+                var everlive = new Everlive({
+                    apiKey: "IMregDJC77R1b1yM",
+                    scheme: "http"
+                });
+           
+                var geocoder, map;
+                function initialize() {
+                    geocoder = new google.maps.Geocoder();
+                    var latlng = new google.maps.LatLng(42.45, 23.20); 
+                    var mapOptions = {
+                        zoom: 2,
+                        center: latlng,
+                        mapTypeId: google.maps.MapTypeId.ROADMAP
+                    };
 
-                                     <a style="color:black;" href="views/Post-Option-Sreen.html"><i style="color:black;" class="fa fa-map-marker fa-3x"></i><br/>Post</a>
-                                    <a style="color:black;" href="views/map.html"><i style="color:black;" class="fa fa-location-arrow fa-3x"></i><br/>Near Me</a>
-                                    <a style="color:black;" href="views/Favorite-Screen.html"><i style="color:black;" class="fa fa-star-o fa-3x"></i><br/>favorite</a>
-                                    <a style="color:black;" href="views/Refine-Search.html" data-icon="settings">Setting</a>
-                                </div>
-                            </div>
-   
-        
-        <script>
-            function createMap() {
-                $("#map").kendoMap({
-                    center: [30.268107, -97.744821],
-                    zoom: 15,
-                    layers: [{
-                        type: "tile",
-                        urlTemplate: "http://#= subdomain #.tile2.opencyclemap.org/transport/#= zoom #/#= x #/#= y #.png",
-                        subdomains: ["a", "b", "c"],
-                        attribution: "&copy; <a href='http://osm.org/copyright'></a>." +
-                                     "<a href='http://www.opencyclemap.org/'>Click to open map</a>"
-                  }, {
-                        type: "marker",
-                        dataSource: {
-                            transport: {
-                                read: {
-                                    url: "../content/dataviz/map/store-locations.json",
-                                    dataType: "json"
-                                }
+                    map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+                    placeMarker(latlng, map, "You are here")
+                }
+
+                function getGeoData() {
+                    var currentLocation = new Everlive.GeoPoint(23.379068, 42.650601); //longitude // latitude
+                    var distance = 5000; // experiment with 5000, 15000, 25000
+                    var metricUnit = "km";
+
+                    var query = new Everlive.Query();
+                    query.where().nearSphere('Location', currentLocation, distance, metricUnit);
+
+                    var data = everlive.data('Posts');
+                    return data.get(query);
+                }
+  
+                function transformGeoDataToMarkers() {
+                    getGeoData().then(
+                        function (data) {
+                            for (var i = 0; i < data.result.length; i++) {
+                                var latitude = data.result[i].Location.latitude;
+                                var longitude = data.result[i].Location.longitude;
+                                //var townName = data.result[i].Name;
+
+                                var coord = new google.maps.LatLng(latitude, longitude);
+                                //var title = "Name: " + townName;
+                                placeMarker(coord, map);
                             }
                         },
-                        locationField: "latlng",
-                        titleField: "name"
-                    }],
-                     panEnd: updateControls,
-                zoomEnd: updateControls
-                });
-            }
-
-            $(document).ready(createMap);
-            kendo.init($("#mapConfig"));
-
-        $("#center").click( function (e) {
-            $("#map").data("kendoMap").center([
-                parseFloat($("#centerLat").val()),
-                parseFloat($("#centerLng").val())
-            ]);
-        });
-
-        $("#zoom").click( function (e) {
-            $("#map").data("kendoMap").zoom(
-                parseInt($("#zoomLevel").val(), 10)
-            );
-        });
-
-        function updateControls() {
-            var map = $("#map").data("kendoMap");
-            var center = map.center();
-
-            if (kendo.ui.NumericTextBox) {
-                $("#centerLat").data("kendoNumericTextBox").value(center.lat);
-                $("#centerLng").data("kendoNumericTextBox").value(center.lng);
-                $("#zoomLevel").data("kendoDropDownList").value(map.zoom());
-            }
-        }
+                        function (error) {
+                            alert(JSON.stringify(error));
+                        });
+                }
+            
+                function placeMarker(coord, map) {
+                    new google.maps.Marker({
+                            position: coord,
+                            map: map
+                           
+                        });
+                }
+            
+                // bind events
+                google.maps.event.addDomListener(window, 'load', initialize);
+                var button = $("#btn-show");
+                button.on('click', transformGeoDataToMarkers);
+            });
         </script>
-     </div>
+   </div>
+   
+       
+     
+
     

@@ -36,6 +36,8 @@ var app = (function (win) {
         return !isNullOrEmpty(key) && !regEx.test(key);
     };
 
+    
+
     // Handle device back button tap
     var onBackKeyDown = function(e) {
         e.preventDefault();

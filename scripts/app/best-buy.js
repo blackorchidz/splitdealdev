@@ -43,7 +43,7 @@ function savePost() {
                         type:"image"
                     },
                     Location:{
-                        type:"Location"
+                        type:"number"
                     },
                     Price:{
                         type:"string"
