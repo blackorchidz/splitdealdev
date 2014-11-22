@@ -40,13 +40,13 @@ function savePost() {
                         type:"date"
                     },
                     Picture:{
-                        type:"string"
+                        type:"image"
                     },
                     Location:{
                         type:"number"
                     },
                     Price:{
-                        type:"number"
+                        type:"string"
                     }
 
                 }
@@ -55,7 +55,7 @@ function savePost() {
     });//end of data source
 
     var itemsToInsert = {
-        Title:$('#newTitle').val(),
+        Title:$('#postTitle').val(),
         PostCategory:$('#postCategory').val(),
         Description:$('#postDescription').val(),
         SaleEndDate:$('#saleEndDate').val(),
@@ -69,7 +69,7 @@ function savePost() {
     savePostDS.add(itemsToInsert);
     savePostDS.sync();
 
-    $('#newTitle').val('');
+    $('#postTitle').val('');
     $('#postCategory').val('');
     $('#postDescription').val('');
     $('#saleEndDate').val('');
