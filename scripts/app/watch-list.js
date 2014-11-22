@@ -24,7 +24,7 @@ app.Posts = (function () {
                 },
                 Picture: {
                     fields: 'Picture',
-                    defaultValue: ''
+                    defaultValue: null
                 },
                 SaleEndDate: {
                     field: 'SaleEndDate',
@@ -48,7 +48,6 @@ app.Posts = (function () {
 
                 return app.helper.formatDate(this.get('CreatedAt'));
             },
-            
             PictureUrl: function () {
 
                 return app.helper.resolvePictureUrl(this.get('Picture'));
@@ -170,13 +169,13 @@ app.Posts = (function () {
                             navigator.notification.alert(JSON.stringify(error));
                         }
                     }).done(function(data){
-                        var item = watchListsModel.images.add();
+                        var item = imagesViewModel.images.add();
                         item.Title = that.get('picTitle');
                         item.Picture = data.Result.Id;
-                        watchListsModel.images.one('sync', function () {
+                        imagesViewModel.images.one('sync', function () {
                             mobileApp.navigate('#:back');
                         });
-                        watchListsModel.images.sync();
+                        imagesViewModel.images.sync();
                         
                         // reset the form
                         that.set("picSelected", false);
@@ -230,13 +229,13 @@ app.Posts = (function () {
                                 navigator.notification.alert(JSON.stringify(error));
                             }
                         }).done(function(data){
-                            var item = watchListsModel.images.add();
+                            var item = imagesViewModel.images.add();
                             item.Title = $newTitle.val();
                             item.Picture = data.Result.Id;
-                            watchListsModel.images.one('sync', function () {
+                            imagesViewModel.images.one('sync', function () {
                                 mobileApp.navigate('#:back');
                             });
-                            watchListsModel.images.sync();
+                            imagesViewModel.images.sync();
                             picSelected = false;
                         });
                     }
