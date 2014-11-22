@@ -14,7 +14,7 @@
 
                 <li style="color:black;">
                     <label>Title
-                        <input type="text" id="newTitle" data-bind="value: picTitle"/>
+                        <input type="text" id="postTitle"/>
                     </label>
                 </li>
                 <li style="color:black;">
@@ -39,7 +39,7 @@
 
                 <li style="color:black;">
                 <!-- browsing file -->
-                    <input type="file" id="postPicture" data-bind="events: { change: onPicSet }"/> Attach a photo
+                    <input type="file" id="postPicture"/> Attach a photo
 
                    <!-- Capturing camera button -->
                     <!--<input type="file" id="capturePhotoButton"/>-->
@@ -59,7 +59,7 @@
             </ul>
         </li>
         <li style="text-align:center;display:block;">
-            <a data-role="button" data-click="saveItem">POST</a>
+            <a data-role="button" data-click="savePost">POST</a>
         </li>
     </ul>
     <!-- footer -->
