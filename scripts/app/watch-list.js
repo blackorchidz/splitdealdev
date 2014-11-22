@@ -144,17 +144,17 @@ app.Posts = (function () {
         onRemovePic: function() {
             this.set("picSelected", false);
             // reset the file upload selector
-            $newPicture = $newPicture || $("#postPicture");
+            $newPicture = $newPicture || $("#newPicture");
             $newPicture.replaceWith($newPicture = $newPicture.clone(true));
         },
         onAddPic: function() {
-            $newPicture = $newPicture || $("#postPicture");
+            $newPicture = $newPicture || $("#newPicture");
             $newPicture.click();
         },
         saveItem: function() {
             var that = this;
-            $newPicture = $newPicture || $("#postPicture");
-            helper.getImageFileObject(
+            $newPicture = $newPicture || $("#newPicture");
+            AppHelper.getImageFileObject(
                 $newPicture[0].files[0],
                 function( err, fileObj ) {
                     if(err) {
@@ -201,20 +201,20 @@ app.Posts = (function () {
             validator = $('#enterItem').kendoValidator().data("kendoValidator");
             $newTitle = $('#newTitle');
             $picName = $('#picName');
-            $newPicture = $('#postPicture');    
+            $newPicture = $('#newPicture');    
             $newPicLabel = $('#newPicLabel');
             $picInfo = $("#picInfo");
         };
         var show = function () {
             $newTitle.val('');
-            $postPicture.val('').show();
+            $newPicture.val('').show();
             $newPicLabel.show();
             $picInfo.hide();
             validator.hideMessages();
         };
         var saveItem = function () {
             if (validator.validate()) {
-                helper.getImageFileObject(
+                AppHelper.getImageFileObject(
                     $newPicture[0].files[0],
                     function( err, fileObj ) {
                         if(err) {
@@ -247,13 +247,13 @@ app.Posts = (function () {
         var onPicSet = function(e) {
             $picName.text($newPicture[0].files[0].name);
             observable.set("picSelected", true);
-            $postPicture.hide();
+            $newPicture.hide();
             $newPicLabel.hide();
         };
         var removePic = function() {
             $picName.text("");
             $picInfo.hide();
-            $postPicture.val('').show();
+            $newPicture.val('').show();
             $newPicLabel.show();
         };
 
