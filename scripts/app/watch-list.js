@@ -24,7 +24,7 @@ app.Posts = (function () {
                 },
                 Picture: {
                     fields: 'Picture',
-                    defaultValue: ''
+                    defaultValue: null
                 },
                 SaleEndDate: {
                     field: 'SaleEndDate',
@@ -48,7 +48,6 @@ app.Posts = (function () {
 
                 return app.helper.formatDate(this.get('CreatedAt'));
             },
-            
             PictureUrl: function () {
 
                 return app.helper.resolvePictureUrl(this.get('Picture'));
@@ -131,150 +130,13 @@ app.Posts = (function () {
                 });
         };
 
-         var $newPicture;
-  
-    var observable = {
-        picName: '',
-        picTitle: '',
-        picSelected: false,
-        onPicSet: function(e) {
-            this.set('picSelected', true);
-            this.set('picName', e.target.files[0].name);
-        },
-        onRemovePic: function() {
-            this.set("picSelected", false);
-            // reset the file upload selector
-            $newPicture = $newPicture || $("#postPicture");
-            $newPicture.replaceWith($newPicture = $newPicture.clone(true));
-        },
-        onAddPic: function() {
-            $newPicture = $newPicture || $("#postPicture");
-            $newPicture.click();
-        },
-        saveItem: function() {
-            var that = this;
-            $newPicture = $newPicture || $("#postPicture");
-            helper.getImageFileObject(
-                $newPicture[0].files[0],
-                function( err, fileObj ) {
-                    if(err) {
-                        navigator.notification.alert(err);    
-                        return;
-                    }
-                    $.ajax({
-                        type: "POST",
-                        url: 'http://api.everlive.com/v1/IMregDJC77R1b1yM/Files',
-                        contentType: "application/json",
-                        data: JSON.stringify(fileObj),
-                        error: function(error){
-                            navigator.notification.alert(JSON.stringify(error));
-                        }
-                    }).done(function(data){
-                        var item = watchListsModel.images.add();
-                        item.Title = that.get('picTitle');
-                        item.Picture = data.Result.Id;
-                        watchListsModel.images.one('sync', function () {
-                            mobileApp.navigate('#:back');
-                        });
-                        watchListsModel.images.sync();
-                        
-                        // reset the form
-                        that.set("picSelected", false);
-                        $newPicture.replaceWith($newPicture = $newPicture.clone(true));
-                    });
-                }
-            );          
-        }
-    };
-    // ***************** END ****************************
-
-    // add image view model
-    var addImageViewModel = (function () {
-        var picName = "";
-        var $newTitle;
-        var $newPicture;
-        var $picName;
-        var $picInfo;
-        var $newPicLabel;
-        var validator;
-        var initp = function () {
-            validator = $('#enterItem').kendoValidator().data("kendoValidator");
-            $newTitle = $('#newTitle');
-            $picName = $('#picName');
-            $newPicture = $('#postPicture');    
-            $newPicLabel = $('#newPicLabel');
-            $picInfo = $("#picInfo");
-        };
-        var show = function () {
-            $newTitle.val('');
-            $postPicture.val('').show();
-            $newPicLabel.show();
-            $picInfo.hide();
-            validator.hideMessages();
-        };
-        var saveItem = function () {
-            if (validator.validate()) {
-                helper.getImageFileObject(
-                    $newPicture[0].files[0],
-                    function( err, fileObj ) {
-                        if(err) {
-                            navigator.notification.alert(err);    
-                            return;
-                        }
-                        $.ajax({
-                            type: "POST",
-                            url: 'http://api.everlive.com/v1/IMregDJC77R1b1yM/Files',
-                            contentType: "application/json",
-                            data: JSON.stringify(fileObj),
-                            error: function(error){
-                                navigator.notification.alert(JSON.stringify(error));
-                            }
-                        }).done(function(data){
-                            var item = watchListsModel.images.add();
-                            item.Title = $newTitle.val();
-                            item.Picture = data.Result.Id;
-                            watchListsModel.images.one('sync', function () {
-                                mobileApp.navigate('#:back');
-                            });
-                            watchListsModel.images.sync();
-                            picSelected = false;
-                        });
-                    }
-                );                
-                
-            }
-        };
-        var onPicSet = function(e) {
-            $picName.text($newPicture[0].files[0].name);
-            observable.set("picSelected", true);
-            $postPicture.hide();
-            $newPicLabel.hide();
-        };
-        var removePic = function() {
-            $picName.text("");
-            $picInfo.hide();
-            $postPicture.val('').show();
-            $newPicLabel.show();
-        };
-
         return {
             watchLists: watchListsModel.watchLists,
             activitySelected: activitySelected,
-            logout: logout,
-            initp: initp,
-            show: show,
-            saveItem: saveItem,
-            onPicSet: onPicSet,
-            removePic : removePic
+            logout: logout
         };
 
     }());
-return {
-        viewModels: {
-        
-            addImage : observable
-        }
-    };
 
     return watchListsViewModel;
 
