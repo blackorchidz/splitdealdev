@@ -1,18 +1,5 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta name="viewport" content="minimal-ui" />
-    <title>Google Map and Kendo UI</title>
-    <link href="kendo/styles/kendo.mobile.all.min.css" rel="stylesheet" />
-    <script src="kendo/js/jquery.min.js"></script>
-    <script src="kendo/js/kendo.mobile.min.js"></script>
-    <script src="http://maps.googleapis.com/maps/api/js?sensor=true"></script>
-    <style type="text/css">
-   /* #info h1,
-#info h2 {
-  text-align: center;
-}*/
 
+<<<<<<< HEAD
 #map_canvas {
   width: 100%;
 }
@@ -237,18 +224,105 @@ App.initMap();
 
   <div id="geolocation-error-modal" data-role="modalview" style="width: 95%; height: 18em;"
     data-title="Geolocation Error">
+=======
+    <div data-role="view" id="mapview1" data-title="MAP" data-layout="default">
+>>>>>>> parent of 0591b24... map view.hml
     <div data-role="header">
-      <div data-role="navbar">
-        <span data-role="view-title"></span>
-        <a data-role="button"
-          data-click="App.onCloseModalClick"
-          data-align="right"
-          data-icon="downloads">
-        </a>
-      </div>
-    </div>
-    Geolocation has been denied or is not enabled on this device.
-    Turn on location services in privacy settings and try again.
-  </div>
-</body>
-</html>
+            <div style="color:black;" data-role="navbar">
+                
+                <a style="color:black;" class="nav-button nav-button-back hide-text" data-align="left" data-role="backbutton" href="#welcome">Back</a>
+                <ul id="btnStoreViewToggle" data-role="buttongroup" data-index="0" data-align="center">
+                <li>Map</li>
+                <li>List</li>
+            </ul>
+            </div>
+        </div>
+ 
+         <div class="wrapper">
+            <div id="map-canvas" style="width: 1300px; height: 600px"></div>
+            <input id="btn-show" type="button" value="Show" />
+        </div>
+ 
+        </script>
+          <!-- footer -->
+               <div data-role="footer">
+                            <!-- tabstrip -->
+                    <div data-role="tabstrip">
+                      <a style="color:black;" href="index.html" data-icon="search">Home</a>
+                      <a style="color:black;" href="views/Post-Option-Sreen.html"><i style="color:black;" class="fa fa-map-marker fa-3x"></i><br/>Post</a>
+                      <a style="color:black;" href="views/map.html"><i style="color:black;" class="fa fa-location-arrow fa-3x"></i><br/>Near Me</a>
+                      <a style="color:black;" href="views/Favorite-Screen.html"><i style="color:black;" class="fa fa-star-o fa-3x"></i><br/>favorite</a>
+                      <a style="color:black;" href="views/Refine-Search.html" data-icon="settings">Setting</a>
+                 </div>
+               </div>
+                 <script>
+            $(document).ready(function () {
+                var everlive = new Everlive({
+                    apiKey: "IMregDJC77R1b1yM",
+                    scheme: "http"
+                });
+           
+                var geocoder, map;
+                function initialize() {
+                    geocoder = new google.maps.Geocoder();
+                    var latlng = new google.maps.LatLng(42.45, 23.20); 
+                    var mapOptions = {
+                        zoom: 2,
+                        center: latlng,
+                        mapTypeId: google.maps.MapTypeId.ROADMAP
+                    };
+
+                    map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+                    placeMarker(latlng, map, "You are here")
+                }
+
+                function getGeoData() {
+                    var currentLocation = new Everlive.GeoPoint(23.379068, 42.650601); //longitude // latitude
+                    var distance = 5000; // experiment with 5000, 15000, 25000
+                    var metricUnit = "km";
+
+                    var query = new Everlive.Query();
+                    query.where().nearSphere('Location', currentLocation, distance, metricUnit);
+
+                    var data = everlive.data('Posts');
+                    return data.get(query);
+                }
+  
+                function transformGeoDataToMarkers() {
+                    getGeoData().then(
+                        function (data) {
+                            for (var i = 0; i < data.result.length; i++) {
+                                var latitude = data.result[i].Location.latitude;
+                                var longitude = data.result[i].Location.longitude;
+                                //var townName = data.result[i].Name;
+
+                                var coord = new google.maps.LatLng(latitude, longitude);
+                                //var title = "Name: " + townName;
+                                placeMarker(coord, map);
+                            }
+                        },
+                        function (error) {
+                            alert(JSON.stringify(error));
+                        });
+                }
+            
+                function placeMarker(coord, map) {
+                    new google.maps.Marker({
+                            position: coord,
+                            map: map
+                           
+                        });
+                }
+            
+                // bind events
+                google.maps.event.addDomListener(window, 'load', initialize);
+                var button = $("#btn-show");
+                button.on('click', transformGeoDataToMarkers);
+            });
+        </script>
+   </div>
+   
+       
+     
+
+    
