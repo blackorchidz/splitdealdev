@@ -39,7 +39,7 @@
 
 <!-- Post ListView Template -->
 <script type="text/x-kendo-template" id="watchListTemplate">
-    <div data-role="touch" data-bind="events: { tap: activitySelected }" class="cf">
+    <div data-role="touch" data-bind="events: { tap: watchSelected }" class="cf">
         <div class="user-avatar">
             <img data-bind="attr:{src: User().PictureUrl}" alt="styles/images/avatar.png" height="40px" width="40px"/>
         </div>
@@ -49,7 +49,7 @@
             <span class="time-span" style="float:right;">${CreatedAtFormatted()}</span><br/>
             <span class="price">Price: ${Price}</span><br/>
             <span class="price">Location: ${Location}</span><br/>
-            <img data-align="left" id="Picture" data-bind="attr:{src: PictureUrl}" width="75" />
+            <img data-align="left" id="Picture" data-bind="attr:{src:PictureUrl}" width="75" />
             
             <br/>
         </div>

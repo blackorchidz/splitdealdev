@@ -1,4 +1,4 @@
-<div data-role="view" id="mapview" data-title="MAP" data-init="storesInit" data-show="onStoresShow" data-model="app.Maps">
+<div data-role="view" id="mapview" data-title="MAP" data-model="app.Maps">
 
     <div data-role="header">
         <div style="color:black;" data-role="navbar">
@@ -13,6 +13,7 @@
         </div>
     
     <div id="storesContent">
+        <div id="map"></div>
 
    <ul id="storeList" data-style="inset" data-role="listview" data-template="mapActivityTemplate"
         data-bind="source: activities">

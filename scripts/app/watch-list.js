@@ -109,7 +109,7 @@ app.Posts = (function () {
  
 
         // Navigate to activityView When some activity is selected
-        var activitySelected = function (e) {
+        var watchSelected = function (e) {
 
             app.mobileApp.navigate('views/watch-View.html?uid=' + e.data.uid);
         };
@@ -141,6 +141,3 @@ app.Posts = (function () {
     return watchListsViewModel;
 
 }());
-
-
-
