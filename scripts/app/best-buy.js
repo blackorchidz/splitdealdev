@@ -33,7 +33,7 @@ function savePost() {
                         type:"date"
                     },
                     Picture:{
-                        type:"image"
+                        type:"file"
                     },
                     Location:{
                         type:"number"
