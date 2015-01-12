@@ -21,7 +21,9 @@
         </div>
     </div>
 
-            <div id="map-canvas" style="width: 100%; height: 480px; border-style: dotted;"></div>
+            <div id="map-canvas" style="width: 100%; height: 480px; border-style: dotted;">
+                <p style="text-align:center;">Click on Load Map..!!</p> 
+            </div>
         
 
 
@@ -70,7 +72,7 @@
                             zoom: 4,
                             mapTypeId: google.maps.MapTypeId.ROADMAP
                         };
-                        //alert("Reached Here");
+                        
                         map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
                         placeMarker(latlng, map, "Ottawa,Canada(capital)")
                    // }//initialize()
