@@ -1,0 +1,127 @@
+<div data-role="view" id="mapview" data-title="MAP" data-model="app.Maps">
+
+    <div data-role="header">
+
+        <div style="color:black;" data-role="navbar">    
+   <!--
+            <ul id="btnStoreViewToggle" data-role="buttongroup" data-index="0" data-align="center">
+                <li>Map</li>
+                <li>List</li>
+            </ul>
+     -->
+            <a data-role="button" href="views/map.html" class="btn-map">List</a>
+            <a data-role="button" href="views/mapDisplay.html" class="btn-map">Map</a>
+            
+            <a style="color:black;" class="nav-button nav-button-back hide-text" data-align="left"
+               data-role="backbutton">Back</a>
+        </div>        
+    </div>
+
+
+        <div>
+            <button onclick="initMap()" style="width: 49.8%; height:50px; background-color:#46A541; color:#FCFCFC">Load Map</button>
+            <button id="btn-show" style="width: 49.8%; height:50px; background-color:#46A541; color:#FCFCFC">Show Stores</button>
+            <div id="map-canvas" style="width: 100%; height: 480px; border-style: dotted;"></div>
+        </div>
+
+
+    <!-- footer -->
+    <div data-role="footer">
+        <!-- tabstrip -->
+        <div data-role="tabstrip">
+            <a style="color:black;" href="index.html" data-icon="search">Home</a>
+
+            <a style="color:black;" href="views/postOptionScreen.html"><i style="color:black;"
+                                                                          class="fa fa-map-marker fa-3x"></i><br/>Post</a>
+            <a style="color:black;" href="views/map.html"><i style="color:black;"
+                                                             class="fa fa-location-arrow fa-3x"></i><br/>Near Me</a>
+            <a style="color:black;" href="views/Favorite-Screen.html"><i style="color:black;"
+                                                                         class="fa fa-star-o fa-3x"></i><br/>favorite</a>
+            <a style="color:black;" href="views/Refine-Search.html" data-icon="settings">Setting</a>
+        </div>
+    </div>
+    <!-- ./ end of footer -->
+
+</div>
+
+        
+            <script type="text/javascript">
+                 function initMap()
+                {
+                    //alert('initializing. . .');
+                    var everlive = new Everlive({
+                        apiKey: "IMregDJC77R1b1yM",
+                        scheme: "http"
+                    });
+                    //alert('initializing 2');
+           
+                    var geocoder, map;
+
+                   // function initialize() 
+                    //{
+                        //alert('initialize()');
+                        geocoder = new google.maps.Geocoder();
+
+                        var latlng = new google.maps.LatLng(45.220743,-76.036377);//ottawa,Canada
+
+                        var mapOptions = 
+                        { 
+                            center: latlng,
+                            zoom: 4,
+                            mapTypeId: google.maps.MapTypeId.ROADMAP
+                        };
+                        //alert("Reached Here");
+                        map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+                        placeMarker(latlng, map, "Ottawa,Canada(capital)")
+                   // }//initialize()
+
+                    function getGeoData() 
+                    {
+                        //alert('getGeoData()');
+                        var currentLocation = new Everlive.GeoPoint(23.379068, 42.650601); //can track current location and pass here
+                        var distance = 25000; // experiment with 5000, 15000, 25000
+                        var metricUnit = "km";
+
+                        var query = new Everlive.Query();
+                        query.where().nearSphere('StoreLocation', currentLocation, distance, metricUnit);
+
+                        var data = everlive.data('Stores');
+                        return data.get(query);
+                    }//getGeoData()
+  
+                    function transformGeoDataToMarkers() 
+                    {
+                        //alert('transformGeoDataToMarkers()');
+                        getGeoData().then(function (data) {
+                                for (var i = 0; i < data.result.length; i++) 
+                                {
+                                    var latitude = data.result[i].StoreLocation.latitude;
+                                    var longitude = data.result[i].StoreLocation.longitude;
+                                    var storeName = data.result[i].StoreName;
+
+                                    var coord = new google.maps.LatLng(latitude, longitude);
+                                    var title = "Store Name: " + storeName;
+                                    placeMarker(coord, map, title);
+                                }//for loop
+                            },//function(data)
+                            function (error) {
+                                alert(JSON.stringify(error));
+                            });//function(error),then()
+                    }//transformGeoDataToMarkers()
+            
+                    function placeMarker(coord, map, title) 
+                    {
+                        //alert('placeMarker()');
+                        new google.maps.Marker({
+                                position: coord,
+                                map: map,
+                                title: title
+                            });
+                    }//placeMarker()
+                
+                    // bind events
+                    google.maps.event.addDomListener(window, 'load', initMap);
+                    var button = $("#btn-show");
+                    button.on('click', transformGeoDataToMarkers);
+                }
+            </script>

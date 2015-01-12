@@ -1,26 +1,32 @@
 <div data-role="view" id="mapview" data-title="MAP" data-model="app.Maps">
 
     <div data-role="header">
-        <div style="color:black;" data-role="navbar">
-        
+
+        <div style="color:black;" data-role="navbar">    
+   <!--
             <ul id="btnStoreViewToggle" data-role="buttongroup" data-index="0" data-align="center">
                 <li>Map</li>
                 <li>List</li>
             </ul>
+     -->
+            <a data-role="button" href="views/map.html" class="btn-map">List</a>
+            <a data-role="button" href="views/mapDisplay.html" class="btn-map">Map</a>
+
             <a style="color:black;" class="nav-button nav-button-back hide-text" data-align="left"
                data-role="backbutton">Back</a>
         </div>        
-        </div>
-    
+    </div>
+  
+
+
     <div id="storesContent">
         <div id="map"></div>
-
-   <ul id="storeList" data-style="inset" data-role="listview" data-template="mapActivityTemplate"
+       <ul id="storeList" data-style="inset" data-role="listview" data-template="mapActivityTemplate"
         data-bind="source: activities">
-    </ul>
-</div>
- <span id="offline">Please reconnect to Internet.</span>
+        </ul>
+    </div>
 
+ <span id="offline">Please reconnect to Internet.</span>
 
     <!-- footer -->
     <div data-role="footer">
