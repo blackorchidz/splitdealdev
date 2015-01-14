@@ -1,3 +1,210 @@
+
+<style type="text/css">
+#my-map 
+{
+    border-radius: 10px;
+    border-color : black;
+    border-style: dashed;
+    position : absolute;
+    left : 00px;
+    bottom : 40px;
+    width: 100%;
+    height: 200px;
+    margin: 0 auto;
+}
+</style>
+
+<script>
+        var el = new Everlive('IMregDJC77R1b1yM');
+
+        /*******map stuff goes here***********/
+        var geo;
+        var lat;
+        var lon;
+        var map;
+        var latti;
+        var longi;
+        var Location;
+        var latfetched;
+        var longi;
+        var longifetched;
+        var latNumber;
+        var longiNumber;
+
+        $( document ).ready(function() {
+            init();
+        })
+        
+        /****step 2:****/
+        function init() {
+            //alert('Step 2 : map');
+            if ((geo = getGeoLocation())) //>>>go to step 3 
+            {
+                console.log('Using HTML5 Geolocation');
+                //alert('Using HTML5 Geolocation');
+            } else {
+                alert('HTML5 Geolocation is not supported.');
+            }
+            //below line works as >>>> navigator.geolocation.getCurrentPosition()
+            geo.getCurrentPosition(show_coords); //>>>go to step 4
+        }
+
+
+        /****step 3:****/
+        function getGeoLocation() {
+            //alert('Step 3 : map');
+            try {
+                if (!!navigator.geolocation)
+                    return navigator.geolocation;
+                else
+                    return undefined;
+            } catch (e) {
+                return undefined;
+            }
+        }
+
+        /****step 4:****/
+        function show_coords(position) //call back funtion that will be called by the geolocation api. Takes 'position obj as parameter'
+            {
+                //alert('Step 4 : map');
+                console.log('tracking position');
+                lat = position.coords.latitude;
+                lon = position.coords.longitude;
+
+                lat.toString();
+                lon.toString(); //toString() used for displaying their values
+
+                console.log('latitude : ' + lat);
+                console.log('longitude : ' + lon);
+
+                generateMap(lat, lon);
+                console.log('back in show_coords()');
+            }
+
+        /****step 5:****/
+        function generateMap(latitude, longitude) 
+        {
+            //alert('step 5: in generateMap()');
+                console.log('your current location is : ');
+                console.log('latitude : ' + latitude);
+                console.log('longitude : ' + longitude);
+
+                //array
+                var mapOptions = {
+                    center: new google.maps.LatLng(latitude, longitude),
+                    zoom: 15,
+                    mapTypeId: google.maps.MapTypeId.ROADMAP
+                };
+                map = new google.maps.Map(document.getElementById("my-map"), mapOptions);
+
+                google.maps.event.addListener(map, "click", function (e) {
+                    //lat and lng is available in e object
+                    var latLng = e.latLng;
+                    
+                    console.log('listening...');
+                    console.log('lat : ' + latti);
+                    console.log('long : ' + longi);
+
+                    latti = e.latLng.lat();
+                    longi = e.latLng.lng();
+                    
+                    //setting values in hidden fields
+                    $('#lattitude').val(latti);
+                    $('#longitude').val(longi);
+                    
+                    latfetched =  $('#lattitude').val();
+                    console.log('lat fetched' +latfetched);
+                    longifetched = $('#longitude').val();
+                    console.log('longi fetched' +longifetched);
+                    
+                    latNumber = Number(latfetched);
+                    longiNumber = Number(longifetched);
+                    console.log('lat fetched in number : ' +latNumber);
+                    console.log('longi fetched in number : ' +longiNumber);
+                    
+                });
+            }
+            /************map stuff ends here***********/
+
+
+        function startRead(evt)
+        {
+            var file = document.getElementById('postPicture').files[0];
+            
+            //alert("In startRead Function "+file);
+            
+            if (file)
+            {
+                if (file.type.match("image.*"))
+                {
+                    getAsImage(file);
+                    //alert("Name: " + file.name + "\n" + "Last Modified Date :" + file.lastModifiedDate);
+                }
+            }
+        }
+
+        function getAsImage(readFile)
+        {
+            var reader = new FileReader();
+            reader.readAsDataURL(readFile);
+            reader.onload = addImg;
+        }
+
+        function addImg(imgsrc)
+        {
+            //alert("image path is "+imgsrc.target.result);
+
+            //alert("IN ADD ITEM");
+            //alert("Path "+$( "#postPicture" ).val());
+            var name = $( "#postPicture" ).val();
+            //alert("name is "+name);
+            var index = name.lastIndexOf('\\');
+            //alert("index is "+index);
+            var filename = name.substring(index+1);
+            //alert("filename is "+filename);
+             
+           // alert("Filename "+filename);
+
+            var mimeMap = {
+                jpg  : "image/jpeg",
+                jpeg : "image/jpeg",
+                png  : "image/png",
+                gif  : "image/gif"
+            };
+
+            var ext = filename.substr(name.lastIndexOf('.') + 1);
+            var mimeType = mimeMap[ext];
+
+            if(mimeType) {
+
+                var file = 
+                {
+                    "Filename": "",
+                    "ContentType": "",
+                    "CustomField": "",
+                    "base64": ""
+                };
+
+                 file["Filename"]=filename;
+                 file["ContentType"]=mimeType;
+                 file["CustomField"]="customValue";
+                 file["base64"]=imgsrc.target.result;
+
+                 //alert("Value in struct :"+file["Filename"]);
+
+                 el.Files.create(file,
+                 function (data)
+                 {
+                    console.log(JSON.stringify(data));
+                 },
+                 function (error)
+                 {
+                    console.log(JSON.stringify(error));
+                 });
+             }             
+            savePost();
+        }
+    </script>
 <!--BestBuy-screen-->
 <div id="BestBuy-screen" data-role="view" data-title="Post?">
     <header data-role="header">
@@ -18,12 +225,17 @@
                     </label>
                 </li>
                 <li style="color:black;">
-                    <label>Category
-                        <select id="postCategory">
+                    <label>Item Category
+                                        <!-- <input type="text" id="postCategory"/> --> 
+                       <select id="postCategory">
                             <option>-select category-</option>
-                            <option>Classified</option>
-                            <option>SplitDeal</option>
-                            <option>Deal4Share</option>
+                            <option>Mobiles and Tablets</option>
+                            <option>Electronics and Computers</option>
+                            <option>Vehicles</option>
+                            <option>Home and Furniture</option>
+                            <option>Fashion and Beauty</option>
+                            <option>Kids Products</option>
+                            <option>Real Estate</option>
                         </select>
                     </label>
                 </li>
@@ -44,20 +256,29 @@
                 </li>
 
                 <li style="color:black;">
+                    <label>Price</label>
+                    <input type="text" id="postPrice" />
+                </li>
+
+                <li style="color:black;">
                     <label>Location</label>
                     <input type="text" id="postLocation" />
                 </li>
 
-                <li style="color:black;">
-                    <label>Price</label>
-                    <input type="text" id="postPrice" />
-                </li>
+                    <input id="lattitude" type="hidden" />
+            
+                    <input id="longitude" type="hidden" />
+
             </ul>
         </li>
-        <li style="text-align:center;display:block;">
-            <a data-role="button" data-click="savePost">POST</a>
-        </li>
     </ul>
+    
+    <div id="my-map"></div>
+
+    <div style="text-align:center;display:block;">
+            <a data-role="button" onclick="startRead()" id="btn-post" style="bottom:-185px;">POST</a>
+    </div>
+
     <!-- footer -->
     <div data-role="footer">
         <!-- tabstrip -->

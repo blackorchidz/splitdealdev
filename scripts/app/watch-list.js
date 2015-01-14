@@ -42,6 +42,10 @@ app.Posts = (function () {
                 Price: {
                     field: 'Price',
                     default: null
+                },
+                ItemCategory:{
+                    field: 'ItemCategory',
+                    default: null
                 }
             },
             CreatedAtFormatted: function () {
@@ -85,7 +89,7 @@ app.Posts = (function () {
             },
             transport: {
                 // Required by Backend Services
-                typeName: 'Posts'
+                typeName: 'PostX'
             },
             change: function (e) {
 

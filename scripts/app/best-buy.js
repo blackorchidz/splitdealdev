@@ -5,12 +5,14 @@
 
 function savePost() {
 
+    //alert('in save post...');
+
     var savePostDS = new kendo.data.DataSource({
         type: 'everlive',
         transport: {
             // Required by Backend Services
             create: {
-                url: "http://api.everlive.com/v1/IMregDJC77R1b1yM/Posts",
+                url: "http://api.everlive.com/v1/IMregDJC77R1b1yM/PostX",
                 type: "POST",
                 dataType: "json"
             }
@@ -33,12 +35,18 @@ function savePost() {
                         type:"date"
                     },
                     Picture:{
-                        type:"image"
+                        type:"file"
                     },
                     Location:{
-                        type:"number"
+                        type:"GeoPoint"
+                    },
+                    LocationName:{
+                        type:"string"
                     },
                     Price:{
+                        type:"string"
+                    },
+                    ItemCategory:{
                         type:"string"
                     }
 
@@ -47,17 +55,36 @@ function savePost() {
         }//end of schema
     });//end of data source
 
+    var longi = $('#longitude').val();
+    var latti = $('#lattitude').val();
+    //alert('longi is : '+longi);
+    //alert('latti is : '+latti);
+
+    
+    var latNumber = Number(longi);
+    var longiNumber = Number(latti);
+    console.log('IN JS lat fetched in number : ' +latNumber);
+    console.log('IN JS longi fetched in number : ' +longiNumber);
+
+
+    var location = {
+          longitude: latNumber,
+          latitude: longiNumber
+    }
+    //alert('location : '+location);
+
     var itemsToInsert = {
         Title:$('#postTitle').val(),
-        PostCategory:$('#postCategory').val(),
+        ItemCategory:$('#postCategory').val(),
         Description:$('#postDescription').val(),
         SaleEndDate:$('#saleEndDate').val(),
         Picture:$('#postPicture').val(),
-        Location:$('#postLocation').val(),
+        Location: location,
+        LocationName:$('#postLocation').val(),
         Price:$('#postPrice').val()
         //User_id: Users().currentUser.id
-
     };
+    //alert('items to insert: '+itemsToInsert);
 
     savePostDS.add(itemsToInsert);
     savePostDS.sync();

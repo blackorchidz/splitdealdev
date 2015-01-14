@@ -20,11 +20,10 @@
             <button id="btn-show" style="width: 49%; height:50px; background-color:#46A541; color:#FCFCFC">Show Stores</button>
         </div>
     </div>
-
-            <div id="map-canvas" style="width: 100%; height: 480px; border-style: dotted;">
-                <p style="text-align:center;">Click on Load Map..!!</p> 
-            </div>
         
+        <div>
+            <div id="map-canvas" style="width: 100%; height: 480px; border-style: dotted;"></div>
+        </div>
 
 
     <!-- footer -->
@@ -50,18 +49,18 @@
             <script type="text/javascript">
                  function initMap()
                 {
-                    //alert('initializing. . .');
+                    alert('initializing. . .');
                     var everlive = new Everlive({
                         apiKey: "IMregDJC77R1b1yM",
                         scheme: "http"
                     });
-                    //alert('initializing 2');
+                    alert('initializing 2');
            
                     var geocoder, map;
 
                    // function initialize() 
                     //{
-                        //alert('initialize()');
+                        alert('initialize()');
                         geocoder = new google.maps.Geocoder();
 
                         var latlng = new google.maps.LatLng(45.220743,-76.036377);//ottawa,Canada
@@ -72,14 +71,14 @@
                             zoom: 4,
                             mapTypeId: google.maps.MapTypeId.ROADMAP
                         };
-                        
+                        alert("Reached Here");
                         map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
                         placeMarker(latlng, map, "Ottawa,Canada(capital)")
                    // }//initialize()
 
                     function getGeoData() 
                     {
-                        //alert('getGeoData()');
+                        alert('getGeoData()');
                         var currentLocation = new Everlive.GeoPoint(23.379068, 42.650601); //can track current location and pass here
                         var distance = 25000; // experiment with 5000, 15000, 25000
                         var metricUnit = "km";
@@ -93,7 +92,7 @@
   
                     function transformGeoDataToMarkers() 
                     {
-                        //alert('transformGeoDataToMarkers()');
+                        alert('transformGeoDataToMarkers()');
                         getGeoData().then(function (data) {
                                 for (var i = 0; i < data.result.length; i++) 
                                 {
@@ -113,7 +112,7 @@
             
                     function placeMarker(coord, map, title) 
                     {
-                        //alert('placeMarker()');
+                        alert('placeMarker()');
                         new google.maps.Marker({
                                 position: coord,
                                 map: map,
