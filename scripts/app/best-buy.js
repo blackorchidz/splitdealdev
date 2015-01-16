@@ -55,23 +55,20 @@ function savePost() {
         }//end of schema
     });//end of data source
 
-    var longi = $('#longitude').val();
-    var latti = $('#lattitude').val();
-    //alert('longi is : '+longi);
-    //alert('latti is : '+latti);
-
+    var latti = $("#lattitude").val();
+    var longi = $("#longitude").val();
     
-    var latNumber = Number(longi);
-    var longiNumber = Number(latti);
+    console.log('latti is : '+latti);
+    console.log('longi is : '+longi);
+    
+    var latNumber = Number(latti);
+    var longiNumber = Number(longi);
     console.log('IN JS lat fetched in number : ' +latNumber);
     console.log('IN JS longi fetched in number : ' +longiNumber);
 
-
-    var location = {
-          longitude: latNumber,
-          latitude: longiNumber
-    }
-    //alert('location : '+location);
+    var location = new Everlive.GeoPoint(longiNumber,latNumber);
+    console.log('location: lat : '+location.latitude);
+    console.log('location: long : '+location.longitude);
 
     var itemsToInsert = {
         Title:$('#postTitle').val(),
@@ -84,7 +81,6 @@ function savePost() {
         Price:$('#postPrice').val()
         //User_id: Users().currentUser.id
     };
-    //alert('items to insert: '+itemsToInsert);
 
     savePostDS.add(itemsToInsert);
     savePostDS.sync();
