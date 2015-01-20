@@ -1,6 +1,7 @@
-function demo()
-{
-document.addEventListener("deviceready", onDeviceReady, false);
+//function demo()
+//{
+  //  alert("in demo function");
+//document.addEventListener("deviceready", onDeviceReady, false);
 
 function onDeviceReady() {
     alert("device ready");
@@ -55,4 +56,4 @@ App.prototype = {
         that.resultsField.innerHTML = currentMessage + message + '<br />'; 
     }
 }
-}
+//}
