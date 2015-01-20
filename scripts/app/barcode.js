@@ -5,8 +5,10 @@
 
 function onDeviceReady() {
     alert("device ready");
-    navigator.splashscreen.hide();
+    /*navigator.splashscreen.hide();
+    alert("splashscreen");*/
     var app = new App();
+    alert("app()");
     app.run();
 }
 
