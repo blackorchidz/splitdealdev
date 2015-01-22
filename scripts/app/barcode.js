@@ -1,7 +1,14 @@
+//function demo()
+//{
+  //  alert("in demo function");
+//document.addEventListener("deviceready", onDeviceReady, false);
+
 function onDeviceReady() {
-    /*navigator.splashscreen.hide();*/
-    alert("splashscreen");
+    alert("device ready");
+    /*navigator.splashscreen.hide();
+    alert("splashscreen");*/
     var app = new App();
+    alert("app()");
     app.run();
 }
 
@@ -12,7 +19,7 @@ App.prototype = {
     resultsField: null,
      
     run: function() {
-        //alert("run. . .");
+        alert("run. . .");
         var that = this,
         scanButton = document.getElementById("scanButton");
         alert("scan button");
@@ -53,3 +60,4 @@ App.prototype = {
         that.resultsField.innerHTML = currentMessage + message + '<br />'; 
     }
 }
+//}
