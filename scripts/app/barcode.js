@@ -1,9 +1,6 @@
-function demo()
-{
 document.addEventListener("deviceready", onDeviceReady, false);
 
 function onDeviceReady() {
-    alert("device ready");
     navigator.splashscreen.hide();
     var app = new App();
     app.run();
@@ -16,7 +13,6 @@ App.prototype = {
     resultsField: null,
      
     run: function() {
-        alert("run. . .");
         var that = this,
         scanButton = document.getElementById("scanButton");
         
@@ -54,5 +50,4 @@ App.prototype = {
         alert("message : "+message);
         that.resultsField.innerHTML = currentMessage + message + '<br />'; 
     }
-}
 }
