@@ -35,7 +35,6 @@
     <script src="scripts/app/best-buy.js"></script>
     <script src="scripts/app/map.js"></script>
     <script src="scripts/app/camera.js"></script>
-    <script src="scripts/app/barcode.js"></script>
 
 
 </head>
@@ -54,13 +53,9 @@
             <input id="countries" style="height:30px;width:90%;border:1px solid;flex-wrap:wrap;" type="search"
                    placeholder="Search" data-icon="search"/>
             <!-- barcode image with scanninf functionality -->
-            <li class="barcode" data-align="right">
-            <input type="image" src="styles/images/QRbarcode.png" name="image" id="scanButton"  width="50" height="50" style="margin-right:5px; height:45px; margin-top:1px;">
-            </li>
-            <!-- <img class="text-color" id="scanButton" data-align="right">
+            <a class="text-color" href="barcode.html" data-align="right">
                 <i class="fa fa-barcode fa-3x"></i><br/>
-                <div id="result" class="desc"></div>
-            </img> -->
+            </a>
         </div>
     </div>
     <!--###########./ header ##########-->
