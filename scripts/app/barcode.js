@@ -22,24 +22,22 @@ App.prototype = {
         alert("run. . .");
         var that = this,
         scanButton = document.getElementById("scanButton");
-        alert("scan button");
-        //that.resultsField = document.getElementById("result");
+        
+        that.resultsField = document.getElementById("result");
         
         scanButton.addEventListener("click",
                                     function() { 
                                         that._scan.call(that); 
                                     });
-        alert("after call to scan");
     },
     
     _scan: function() {
         var that = this;
-        alert("in scan");
+        alert("hello");
         if (window.navigator.simulator === true) {
             alert("Not Supported in Simulator.");
         }
         else {
-            alert("in else part");
             cordova.plugins.barcodeScanner.scan(
                 function(result) {
                     if (!result.cancelled) {
