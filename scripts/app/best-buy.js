@@ -2,7 +2,6 @@
  * Created by mkale on 14/11/2014.*/
 
 
-
 function savePost() {
 
     //alert('in save post...');
@@ -12,7 +11,7 @@ function savePost() {
         transport: {
             // Required by Backend Services
             create: {
-                url: "http://api.everlive.com/v1/IMregDJC77R1b1yM/PostX",
+                url: "http://api.everlive.com/v1/IMregDJC77R1b1yM/Posts",
                 type: "POST",
                 dataType: "json"
             }
@@ -132,7 +131,7 @@ function getDetails()
             }
         
 
-            var contentData = el.data('PostX');
+            var contentData = el.data('Posts');
             var query = new Everlive.Query();
             query.select('Id');
             contentData.get(query) // filter
@@ -154,7 +153,7 @@ function getDetails()
                 'Picture': lastId
             };
 
-            var associateData = el.data('PostX');
+            var associateData = el.data('Posts');
             
             associateData.updateSingle(item,
                 function(data){

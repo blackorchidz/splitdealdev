@@ -63,7 +63,7 @@ app.Posts = (function () {
                 var user = $.grep(app.Users.users(), function (e) {
                     return e.Id === userId;
                 })[0];
-
+                    
                 return user ? {
                     DisplayName: user.DisplayName,
                     PictureUrl: app.helper.resolveProfilePictureUrl(user.Picture)
@@ -89,7 +89,7 @@ app.Posts = (function () {
             },
             transport: {
                 // Required by Backend Services
-                typeName: 'PostX'
+                typeName: 'Posts'
             },
             change: function (e) {
 
@@ -144,6 +144,3 @@ app.Posts = (function () {
     return watchListsViewModel;
 
 }());
-
-
-

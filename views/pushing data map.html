@@ -1,0 +1,214 @@
+<style type="text/css">
+#my-map 
+{
+	border-radius: 10px;
+	border-color : black;
+	border-style: dashed;
+	position : absolute;
+	left : 000px;
+	top : 100px;
+	width: 650px;
+	height: 500px;
+	margin: 0 auto;
+}
+</style>
+    
+    <div class="form" id="submitform">
+        <dl>
+            <dt>Place Name :</dt>
+            <dd>
+                <input id="placeName" type="text" />
+            </dd>
+            <dt>More info :</dt>
+            <dd>
+                <input id="info" type="text" />
+            </dd>
+            <dd>
+                <input id="lattitude" type="hidden" />
+            </dd>
+            <dd>
+                <input id="longitude" type="hidden" />
+            </dd>
+        </dl>
+        <dt>&nbsp;</dt>
+        <dd>
+            <button id="create" class="k-button">Save</button>
+        </dd>
+    </div>
+  		<center>
+		<!-- center of the page goes here -->
+		<div id="my-map"></div>
+		</center>
+
+    <script>
+        /*******map stuff goes here***********/
+        var geo;
+        var lat;
+        var lon;
+        var map;
+        var latti;
+        var longi;
+        var Location;
+        var latfetched;
+        var longi;
+        var longifetched;
+        var latNumber;
+        var longiNumber;
+
+
+        /****step 1:****/
+        window.onload = function () {
+            init();
+        }
+        
+        /****step 2:****/
+        function init() {
+            alert('Step 2 : map');
+            if ((geo = getGeoLocation())) //>>>go to step 3 
+            {
+                console.log('Using HTML5 Geolocation');
+                //alert('Using HTML5 Geolocation');
+            } else {
+                alert('HTML5 Geolocation is not supported.');
+            }
+            //below line works as >>>> navigator.geolocation.getCurrentPosition()
+            geo.getCurrentPosition(show_coords); //>>>go to step 4
+        }
+
+
+        /****step 3:****/
+        function getGeoLocation() {
+            alert('Step 3 : map');
+            try {
+                if (!!navigator.geolocation)
+                    return navigator.geolocation;
+                else
+                    return undefined;
+            } catch (e) {
+                return undefined;
+            }
+        }
+
+        /****step 4:****/
+        function show_coords(position) //call back funtion that will be called by the geolocation api. Takes 'position obj as parameter'
+            {
+                alert('Step 4 : map');
+                console.log('tracking position');
+                lat = position.coords.latitude;
+                lon = position.coords.longitude;
+
+                lat.toString();
+                lon.toString(); //toString() used for displaying their values
+
+                console.log('latitude : ' + lat);
+                console.log('longitude : ' + lon);
+
+                generateMap(lat, lon);
+                console.log('back in show_coords()');
+            }
+
+        /****step 5:****/
+        function generateMap(latitude, longitude) 
+        {
+            alert('step 5: in generateMap()');
+                console.log('your current location is : ');
+                console.log('latitude : ' + latitude);
+                console.log('longitude : ' + longitude);
+
+                //array
+                var mapOptions = {
+                    center: new google.maps.LatLng(latitude, longitude),
+                    zoom: 15,
+                    mapTypeId: google.maps.MapTypeId.ROADMAP
+                };
+                map = new google.maps.Map(document.getElementById("my-map"), mapOptions);
+
+                google.maps.event.addListener(map, "click", function (e) {
+                    //lat and lng is available in e object
+                    var latLng = e.latLng;
+                    
+                    console.log('listening...');
+                    console.log('lat : ' + latti);
+                    console.log('long : ' + longi);
+
+                    latti = e.latLng.lat();
+                    longi = e.latLng.lng();
+                    
+                    //setting values in hidden fields
+                    $('#lattitude').val(latti);
+                    $('#longitude').val(longi);
+                    
+                    latfetched =  $('#lattitude').val();
+                    console.log('lat fetched' +latfetched);
+                    longifetched = $('#longitude').val();
+                    console.log('longi fetched' +longifetched);
+                    
+                    latNumber = Number(latfetched);
+                    longiNumber = Number(longifetched);
+                    console.log('lat fetched in number : ' +latNumber);
+                    console.log('longi fetched in number : ' +longiNumber);
+                    
+                    var button = $("#create");
+                    button.on('click', addItem);
+                });
+            }
+            /************map stuff ends here***********/
+        
+        //Function to add data
+        function addItem() {
+            var el = new Everlive('IMregDJC77R1b1yM'); //key
+            
+            var dataSource = new kendo.data.DataSource({
+                type: 'everlive',
+                transport: {
+                    typeName: 'PostX' //Database table name
+                },
+                schema: {
+                    model: {
+                        id: Everlive.idField
+                    } //generates new id automatically
+                }
+            });
+
+            // retrieve the data from Telerik Backend Services  
+            //function to fetch database table to add fields in table
+            dataSource.fetch(function (){
+                alert('in fetch()--> lattitued'+latti);
+                alert('in fetch()--> longitude'+longi);
+                
+                console.log('lat fetched to save' +latNumber);
+                console.log('longi fetched to save' +longiNumber);
+                
+                Location = {
+                            longitude: latNumber,
+                            latitude: longiNumber
+                        }
+                
+                // add a new item
+                // code to add the fields 'FirstName' is from db
+                var itemToAdd = {
+                    'Category_id': '',
+                    'Description': 'hello',
+                    'LocationName': $("#placeName").val(),
+                    'Location': Location,   //new Everlive.GeoPoint(longiNumber, latNumber);
+                    'Picture': 'image.jpg',
+                    'PostType_id': '',
+                    'Price': '456',
+                    'SaleEndDate': 'Jan 17,2015,05:30 AM',
+                    'Title': 'hello title',
+                    'User_id': ''
+                };
+                
+                dataSource.add(itemToAdd); // data added here
+
+                dataSource.sync();
+                alert("data saved");
+
+                $('#placeName').val('');
+                $('#info').val('');
+            });
+        }
+    </script>
+</body>
+
+</html>
