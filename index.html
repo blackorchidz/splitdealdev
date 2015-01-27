@@ -7,14 +7,15 @@
     <!-- Awesome-font CSS -->
     <link href="kendo/font-awesome-4.2.0/css/font-awesome.min.css" rel="stylesheet"/>
     <link href="kendo/styles/kendo.mobile.all.min.css" rel="stylesheet"/>
-   
+
     <!-- <link href="styles/main.css" rel="stylesheet"/> -->
-       
+
     <!-- <script src="cordova.js"></script> -->
-     
+
     <!-- <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true"></script> -->
     <script type="text/javascript" src="kendo/js/jquery.min.js"></script>
     <script type="text/javascript" src="kendo/js/kendo.mobile.min.js"></script>
+    <script type="text/javascript" src="kendo/js/kendo.all.min.js"></script>
 
     <script src="scripts/lib/everlive.all.min.js"></script>
     
@@ -40,19 +41,19 @@
 
 </head>
 <body id="splitDealApp">
-<div data-role="layout" data-id="default">
-    <!--View content will render here-->
-</div>
-<!--WELCOME VIEW -->
-<div data-role="view" id="welcome" data-layout="default" class="welcome-scrn form-view" data-model="app.Login"
-     data-init="app.Login.init" data-show="app.Login.show">
+    <div data-role="layout" data-id="default">
+        <!--View content will render here-->
+    </div>
+    <!--WELCOME VIEW -->
+    <div data-role="view" id="welcome" data-layout="default" class="welcome-scrn form-view" data-model="app.Login"
+    data-init="app.Login.init" data-show="app.Login.show">
 
     <!--########### header ##########-->
     <div data-role="header">
         <div data-role="navbar">
             <!-- search Text Box with OnClick functionality -->
-            <input id="countries" style="height:30px;width:90%;border:1px solid;flex-wrap:wrap;" type="search"
-                   placeholder="Search" data-icon="search" onclick="searchProduct()"/>
+            <input id="searchProduct" style="height:30px;width:90%;border:1px solid;flex-wrap:wrap;" type="search"
+            placeholder="Search" data-icon="search" onclick="searchProduct()"/>
             <!-- barcode image with scanninf functionality -->
             <a class="text-color" href="barcode.html" data-align="right">
                 <i class="fa fa-barcode fa-3x"></i><br/>
@@ -68,20 +69,20 @@
             <li class="username">
                 <label style="color:black;">UserName</label>
                 <input type="text" id="loginUsername" placeholder="Username" required
-                       validationMessage="Username is required!"/>
+                validationMessage="Username is required!"/>
             </li>
             <li class="password">
                 <label style="color:black;">Password:</label>
                 <input type="password" id="loginPassword"
-                       placeholder="Password" required validationMessage="Password is required!"/>
+                placeholder="Password" required validationMessage="Password is required!"/>
             </li>
         </ul>
     </form>
     <ol class="group-wrp">
         <li style="background-color:#4EB848;color:white;text-align:center;display: block;">
-                    <span id="login" data-role="touch" data-bind="events: { tap: login }">
-                        <a data-role="button" class="btn btn-login">Login</a>
-                    </span>
+            <span id="login" data-role="touch" data-bind="events: { tap: login }">
+                <a data-role="button" class="btn btn-login">Login</a>
+            </span>
         </li>
         <li style="color:black;display:block;">Don't have an account?</li>
 
@@ -99,15 +100,15 @@
             <a class="text-color" href="index.html" data-icon="search">Home</a>
             <a class="text-color" href="views/postOptionScreen.html">
                 <i class="text-color fa fa-map-marker fa-3x"></i><br/>Post</a>
-            <a class="text-color" href="views/map.html">
-                <i class="text-color fa fa-location-arrow fa-3x"></i><br/>Near Me</a>
-            <a class="text-color" href="views/Favorite-Screen.html">
-                <i class="text-color fa fa-star-o fa-3x"></i><br/>favorite</a>
-            <a class="text-color" href="views/Refine-Search.html" data-icon="settings">Setting</a>
-        </div>
-    </div>
-    <!--###########./ footer ##########-->
-</div>
+                <a class="text-color" href="views/map.html">
+                    <i class="text-color fa fa-location-arrow fa-3x"></i><br/>Near Me</a>
+                    <a class="text-color" href="views/Favorite-Screen.html">
+                        <i class="text-color fa fa-star-o fa-3x"></i><br/>favorite</a>
+                        <a class="text-color" href="views/Refine-Search.html" data-icon="settings">Setting</a>
+                    </div>
+                </div>
+                <!--###########./ footer ##########-->
+            </div>
 
-</body>
-</html>
+        </body>
+        </html>

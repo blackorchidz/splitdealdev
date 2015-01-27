@@ -1,0 +1,51 @@
+on watchList View
+
+<script>
+/*
+var uid = getQueryVariable("uid");
+
+function getQueryVariable(variable) 
+{
+  var query = window.location.search.substring(1);
+  alert("query : "+query);
+
+  //var vars = query.split("&");
+  //alert("vars : "+vars);
+  
+	//for (var i=0;i<vars.length;i++) 
+  //{
+    var pair = vars[i].split("=");
+    alert("pair : "+pair);
+
+    if (pair[0] == variable) 
+    {
+      alert("pair[1] : "+pair[1]);
+      return pair[1];
+    }
+  //} 
+  alert('Query Variable ' + variable + ' not found');
+}
+*/
+
+function getParam(name)
+{  
+	name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");  
+	var regexS = "[\\?&]"+name+"=([^&#]*)";  
+	var regex = new RegExp( regexS );  
+	var results = regex.exec(window.location.href);
+	if(results == null)
+	{
+		return "";  
+	}
+	else
+	{    
+		alert("result : "+results[1]);
+		return results[1];
+	}
+}
+$( document ).ready(function() 
+{
+	var uid = getParam("uid");
+	alert("uid is : "+uid);
+});
+</script>

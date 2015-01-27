@@ -53,14 +53,14 @@
                     //alert("Name: " + file.name + "\n" + "Last Modified Date :" + file.lastModifiedDate);
                 }
             }
-        }
+        }//startRead()
 
         function getAsImage(readFile)
         {
             var reader = new FileReader();
             reader.readAsDataURL(readFile);
             reader.onload = addImg;
-        }
+        }//getAsImage()
 
         function addImg(imgsrc)
         {
@@ -114,9 +114,9 @@
                     console.log(JSON.stringify(error));
                  });
              }             
-            savePost();
-            getDetails();
-        }
+            savePost(); //call savePost() to save remaining fields
+            getDetails(); //getDetails() to get details from file and content type for association
+        }//addImg()
     </script>
 
 <!--BestBuy-screen-->

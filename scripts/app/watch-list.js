@@ -59,8 +59,11 @@ app.Posts = (function () {
             User: function () {
 
                 var userId = this.get('UserId');
+                //alert("user id : "+userId);
 
-                var user = $.grep(app.Users.users(), function (e) {
+                var user = $.grep(app.Users.users(), function (e) 
+                {
+                    //alert("app.Users.users() id : "+e.Id);
                     return e.Id === userId;
                 })[0];
                     
@@ -88,7 +91,7 @@ app.Posts = (function () {
                 model: watchListModel
             },
             transport: {
-                // Required by Backend Services
+                // content type required by Backend Services
                 typeName: 'Posts'
             },
             change: function (e) {
@@ -114,7 +117,7 @@ app.Posts = (function () {
         // Navigate to activityView When some activity is selected
         var activitySelected = function (e) {
 
-            app.mobileApp.navigate('views/watchListView.html?uid=' + e.data.uid);
+            app.mobileApp.navigate('views/watchListView.html?uid=' + e.data.uid);//passed 2 id here just to test code from stackoverflow
         };
 
         // Navigate to app home

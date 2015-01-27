@@ -40,27 +40,24 @@
 
 <!-- Post ListView Template -->
 <script type="text/x-kendo-template" id="watchListTemplate">
-    <div data-role="touch" data-bind="events: { tap: activitySelected }" class="cf">
+        <div data-role="touch" data-bind="events: { tap: activitySelected }" class="cf" style="float: right;">
+            <a data-role="button">view item</a>
+        </div>
         <div class="user-avatar">
             <img data-bind="attr:{src: User().PictureUrl}" alt="styles/images/avatar.png" height="40px" width="40px"/>
         </div>
         <div class="posts-content">
             <b class="post-title">${Title}</b> <br/>
-            <span class="post-description">${Description}</span><br/>
-            <span class="time-span" style="float:right;">${CreatedAtFormatted()}</span><br/>
             <span class="price">Price: ${Price}</span><br/>
             <span class="Location">Location: ${LocationName}</span><br/>
-            <span class="PostCategory">Category: ${ItemCategory}</span><br/>
-            <img id="Picture" class="picture" data-bind="attr:{src: PictureUrl()}" width="30%"></img>
             <br/>
         </div>
-    </div>
-
 </script>
 
-
-
-
-
-
-
+<script>
+/*            <span class="post-description">${Description}</span><br/>
+            <span class="time-span" style="float:left;">${CreatedAtFormatted()}</span><br/>
+            <span class="PostCategory">Category: ${ItemCategory}</span><br/>
+            <img id="Picture" class="picture" data-bind="attr:{src: PictureUrl()}" width="30%"></img>
+*/
+</script>
