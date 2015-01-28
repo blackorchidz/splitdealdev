@@ -1,5 +1,5 @@
 function searchProduct(){
-	alert("In searchProduct");
+	//alert("In searchProduct");
 	$.ajax
     ({
         type: "GET",

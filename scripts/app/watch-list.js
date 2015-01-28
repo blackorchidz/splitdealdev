@@ -117,7 +117,7 @@ app.Posts = (function () {
         // Navigate to activityView When some activity is selected
         var activitySelected = function (e) {
 
-            app.mobileApp.navigate('views/watchListView.html?uid=' + e.data.uid);//passed 2 id here just to test code from stackoverflow
+            app.mobileApp.navigate('views/watchListView.html?uid=' + e.data.uid);
         };
 
         // Navigate to app home
