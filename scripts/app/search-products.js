@@ -25,6 +25,12 @@ function searchProduct(){
                 dataSource: parseData
             }).data("kendoAutoComplete");
 
+
+            $("#searchProduct").change(function(){
+                var searchedItem = document.getElementById("searchProduct").value;
+                window.location = "views/SelectOption.html?product="+searchedItem;
+            });
+
             console.log("After autocomplete "+parseData);
 
         },
