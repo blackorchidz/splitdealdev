@@ -12,14 +12,14 @@
             //alert("in codeAddress()");
             geocoder = new google.maps.Geocoder();
             var address = document.getElementById("postLocation").value;
-            
+
             geocoder.geocode( { 'address': address}, function(results, status) {
-            if (status == google.maps.GeocoderStatus.OK) 
+            if (status == google.maps.GeocoderStatus.OK)
             {
                 console.log("position is : "+results[0].geometry.location);
                 console.log("position lat is : "+results[0].geometry.location.lat());
                 console.log("position long is : "+results[0].geometry.location.lng());
-                
+
                 latti = results[0].geometry.location.lat();
                 longi = results[0].geometry.location.lng();
                 $("#lattitude").val(latti);
@@ -28,8 +28,8 @@
                 console.log("longitude is . . . : "+ $("#longitude").val());
 
                 startRead();
-            } 
-            else 
+            }
+            else
             {
                 alert("Location not found. Please enter correct location. Error Status : " + status);
             }
@@ -42,9 +42,9 @@
         function startRead(evt)
         {
             var file = document.getElementById('postPicture').files[0];
-            
+
             //alert("In startRead Function "+file);
-            
+
             if (file)
             {
                 if (file.type.match("image.*"))
@@ -74,7 +74,7 @@
             //alert("index is "+index);
             var filename = name.substring(index+1);
             //alert("filename is "+filename);
-             
+
            // alert("Filename "+filename);
 
             var mimeMap = {
@@ -89,7 +89,7 @@
 
             if(mimeType) {
 
-                var file = 
+                var file =
                 {
                     "Filename": "",
                     "ContentType": "",
@@ -113,11 +113,11 @@
                  {
                     console.log(JSON.stringify(error));
                  });
-             }             
+             }
             savePost(); //call savePost() to save remaining fields
             getDetails(); //getDetails() to get details from file and content type for association
         }//addImg()
-    </script>
+</script>
 
 <!--BestBuy-screen-->
 <div id="BestBuy-screen" data-role="view" data-title="Post?">
@@ -134,14 +134,16 @@
             <ul>
 
                 <li style="color:black;">
-                    <label>Title
-                        <input type="text" id="postTitle"/>
+                    <label>
+                        Title
+                        <input type="text" id="postTitle" />
                     </label>
                 </li>
                 <li style="color:black;">
-                    <label>Item Category
-                                        <!-- <input type="text" id="postCategory"/> --> 
-                       <select id="postCategory">
+                    <label>
+                        Item Category
+                        <!-- <input type="text" id="postCategory"/> -->
+                        <select id="postCategory">
                             <option>-select category-</option>
                             <option>Mobiles and Tablets</option>
                             <option>Electronics and Computers</option>
@@ -154,19 +156,20 @@
                     </label>
                 </li>
                 <li style="color:black;">
-                    <label>Description
-                        <input type="text" id="postDescription"/>
+                    <label>
+                        Description
+                        <input type="text" id="postDescription" />
                     </label>
                 </li>
                 <li style="color:black;">
                     <a>Sale End Date </a>
-                    <input id="saleEndDate" type="date"/>
+                    <input id="saleEndDate" type="date" />
                 </li>
 
                 <li style="color:black;">
-                <!-- browsing file -->
-                    <input type="file" id="postPicture"/> Attach a photo
-   
+                    <!-- browsing file -->
+                    <input type="file" id="postPicture" /> Attach a photo
+
                 </li>
 
                 <li style="color:black;">
@@ -180,16 +183,16 @@
                     <input type="text" id="postLocation" />
                 </li>
 
-                    <input id="lattitude" type="hidden" />
-            
-                    <input id="longitude" type="hidden" />
+                <input id="lattitude" type="hidden" />
+
+                <input id="longitude" type="hidden" />
             </ul>
         </li>
     </ul>
-    
+
     <div style="text-align:center;display:block;">
-            <!-- <a data-role="button" onclick="startRead()" id="btn-post" style="bottom:-185px;">POST</a> -->
-            <a data-role="button" onclick="codeAddress()" id="btn-post" style="background-color:#46A541;color:#FCFCFC;width:10%;">POST</a>
+        <!-- <a data-role="button" onclick="startRead()" id="btn-post" style="bottom:-185px;">POST</a> -->
+        <a data-role="button" onclick="codeAddress()" id="btn-post" style="background-color:#46A541;color:#FCFCFC;width:10%;">POST</a>
     </div>
 
     <!-- footer -->
@@ -198,12 +201,18 @@
         <div data-role="tabstrip">
             <a style="color:black;" href="index.html" data-icon="search">Home</a>
 
-            <a style="color:black;" href="views/postOptionScreen.html"><i style="color:black;"
-                                                                          class="fa fa-map-marker fa-3x"></i><br/>Post</a>
-            <a style="color:black;" href="views/map.html"><i style="color:black;"
-                                                             class="fa fa-location-arrow fa-3x"></i><br/>Near Me</a>
-            <a style="color:black;" href="views/Favorite-Screen.html"><i style="color:black;"
-                                                                         class="fa fa-star-o fa-3x"></i><br/>favorite</a>
+            <a style="color:black;" href="views/postOptionScreen.html">
+                <i style="color:black;"
+                   class="fa fa-map-marker fa-3x"></i><br />Post
+            </a>
+            <a style="color:black;" href="views/map.html">
+                <i style="color:black;"
+                   class="fa fa-location-arrow fa-3x"></i><br />Near Me
+            </a>
+            <a style="color:black;" href="views/Favorite-Screen.html">
+                <i style="color:black;"
+                   class="fa fa-star-o fa-3x"></i><br />favorite
+            </a>
             <a style="color:black;" href="views/Refine-Search.html" data-icon="settings">Setting</a>
         </div>
     </div>
