@@ -9,9 +9,7 @@
     </header>
 
     <ul id="post-types-listview" data-style="inset" data-role="listview" data-template="postTypesTemplate"
-        data-bind="source: posts">
-
-    </ul>
+        data-bind="source: posts"></ul>
 
 
     <!-- footer -->
@@ -21,13 +19,17 @@
             <a style="color:black;" href="index.html" data-icon="search">Home</a>
 
             <a style="color:black;" href="views/postOptionScreen.html">
-                <i style="color:black;" class="fa fa-map-marker fa-3x"></i><br/>
+                <i style="color:black;" class="fa fa-map-marker fa-3x"></i><br />
                 Post
             </a>
-            <a style="color:black;" href="views/map.html"><i style="color:black;"
-                                                             class="fa fa-location-arrow fa-3x"></i><br/>Near Me</a>
-            <a style="color:black;" href="views/Favorite-Screen.html"><i style="color:black;"
-                                                                         class="fa fa-star-o fa-3x"></i><br/>favorite</a>
+            <a style="color:black;" href="views/map.html">
+                <i style="color:black;"
+                   class="fa fa-location-arrow fa-3x"></i><br />Near Me
+            </a>
+            <a style="color:black;" href="views/Favorite-Screen.html">
+                <i style="color:black;"
+                   class="fa fa-star-o fa-3x"></i><br />favorite
+            </a>
             <a style="color:black;" href="views/Refine-Search.html" data-icon="settings">Setting</a>
         </div>
     </div>
@@ -38,7 +40,7 @@
 <script type="text/x-kendo-template" id="postTypesTemplate">
     <div data-role="touch" data-bind="events: { tap: typeSelected }" class="cf">
         <div class="postType-content">
-            <b class="post-type" data-bind="value: post-type-name">${TypeName}</b> <br/>
+            <b class="post-type" data-bind="value: post-type-name">${TypeName}</b> <br />
         </div>
     </div>
 
