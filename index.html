@@ -36,6 +36,7 @@
     <script src="scripts/app/map.js"></script>
     <script src="scripts/app/camera.js"></script>
     <script src="scripts/app/search-products.js"></script>
+    <script src="scripts/app/select-type.js"></script>
 
 
 </head>
@@ -51,8 +52,8 @@
         <div data-role="header">
             <div data-role="navbar">
                 <!-- search Text Box with OnClick functionality -->
-                <input id="searchProduct" style="height:30px;width:90%;border:1px solid;flex-wrap:wrap;" type="search"
-                       placeholder="Search" data-icon="search" onclick="searchProduct()" />
+            <input id="searchProduct" style="height:30px;width:90%;border:1px solid;flex-wrap:wrap;" type="search"
+            placeholder="Search" data-icon="search" onkeypress="searchProduct()"/>
                 <!-- barcode image with scanninf functionality -->
                 <a class="text-color" href="barcode.html" data-align="right">
                     <i class="fa fa-barcode fa-3x"></i><br />

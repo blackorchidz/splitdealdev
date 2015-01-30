@@ -1,1 +1,56 @@
-Hello
+<!--Post-Option-screen-->
+<div id="option-screen" data-role="view" data-layout="default" class="option-types-view" data-model="app.selectOption" data-show="app.selectOption.getURLParam">
+
+<!--########### header ##########-->
+<div data-role="header">
+    <div data-role="navbar">
+    <!-- search Text Box with OnClick functionality -->
+        <input id="searchProduct" style="height:30px;width:90%;border:1px solid;flex-wrap:wrap;" type="search"
+        placeholder="Search" data-icon="search" onkeypress="searchProduct()"/>
+        <!-- barcode image with scanninf functionality -->
+        <a class="text-color" href="barcode.html" data-align="right">
+            <i class="fa fa-barcode fa-3x"></i><br/>
+        </a>
+    </div>
+    <div data-role="navbar">
+        Select Options
+    </div>
+</div>
+<!--###########./ header ##########-->
+
+    <ul id="options-types-listview" data-role="listview">
+
+        <li id="typeFilter" data-bind="click: typeFilter">
+            <label>Type</label>
+        </li>
+
+        <li id="locationFilter" data-bind="click: locationFilter">
+            <label>Location</label>
+        </li>
+
+        <li id="categoryFilter" data-bind="click: categoryFilter">
+            <label>Category</label>
+        </li>
+
+    </ul>
+
+
+    <!-- footer -->
+    <div data-role="footer">
+        <!-- tabstrip -->
+        <div data-role="tabstrip">
+            <a style="color:black;" href="index.html" data-icon="search">Home</a>
+
+            <a style="color:black;" href="views/postOptionScreen.html">
+                <i style="color:black;" class="fa fa-map-marker fa-3x"></i><br/>
+                Post
+            </a>
+            <a style="color:black;" href="views/map.html"><i style="color:black;"
+                                                             class="fa fa-location-arrow fa-3x"></i><br/>Near Me</a>
+            <a style="color:black;" href="views/Favorite-Screen.html"><i style="color:black;"
+                                                                         class="fa fa-star-o fa-3x"></i><br/>favorite</a>
+            <a style="color:black;" href="views/Refine-Search.html" data-icon="settings">Setting</a>
+        </div>
+    </div>
+
+</div>

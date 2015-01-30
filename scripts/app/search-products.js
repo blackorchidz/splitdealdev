@@ -28,7 +28,8 @@ function searchProduct(){
 
             $("#searchProduct").change(function(){
                 var searchedItem = document.getElementById("searchProduct").value;
-                window.location = "views/SelectOption.html?product="+searchedItem;
+                app.mobileApp.navigate('views/SelectOption.html?itemName='+searchedItem);
+                //window.location = "views/SelectOption.html?product="+searchedItem;
             });
 
             console.log("After autocomplete "+parseData);
