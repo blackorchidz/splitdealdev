@@ -43,6 +43,10 @@ app.Posts = (function () {
                     field: 'Price',
                     default: null
                 },
+                LocationName:{
+                    field: 'LocationName',
+                    default: null
+                },
                 ItemCategory:{
                     field: 'ItemCategory',
                     default: null
@@ -117,7 +121,7 @@ app.Posts = (function () {
         // Navigate to activityView When some activity is selected
         var activitySelected = function (e) {
 
-            app.mobileApp.navigate('views/watchListView.html?uid=' + e.data.id);
+            app.mobileApp.navigate('views/watchListView.html?uid=' + e.data.uid);
         };
 
         // Navigate to app home

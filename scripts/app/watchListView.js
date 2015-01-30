@@ -18,19 +18,20 @@ app.Activity = (function () {
         
         var init = function () {
             alert("in init function . . . ");
-            $commentsContainer = $('#comments-listview');
+            //$commentsContainer = $('#comments-listview');
             $activityPicture = $('#picture');
         };
         
         var show = function (e) {
             alert("in show function . . . ");
-            $commentsContainer.empty();
+            //$commentsContainer.empty();
             
             listScroller = e.view.scroller;
             listScroller.reset();
             
             activityUid = e.view.params.uid;
             alert("activity id : "+activityUid);
+            
             // Get current activity (based on item uid) from Activities model
             activity = app.Posts.watchLists.getByUid(activityUid);
             alert("activity : "+activity);
